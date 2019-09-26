@@ -1,5 +1,89 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0 0;
+    padding: 0 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.outside-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.outside-container nav {
+    background: lightseagreen;
+}
+
+
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    letter-spacing: 2px;
+}
+
+.nav-links .site-name,
+.nav-links .auth-links ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-links .site-name img {
+    width: 100px;
+    height: 60px;
+}
+
+.nav-links .site-name h3 {
+    color: white;
+    font-size: 25px;
+}
+
+.nav-links .auth-links {
+    font-size: 20px;
+    margin-right: 5%;
+}
+
+.auth-links .login{
+    margin-left: 20px;
+}
+
+.auth-links ul {
+    list-style: none;
+}
+
+.auth-links ul li a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+    border-radius: 10%;
+    padding: 10px;
+    transition: all .5s;
+}
+
+.auth-links ul li a:hover {
+    background: black;
+}
+
+/* Space Assigned for Authenticated User */
+
+.indexes-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: whitesmoke;
+    font-size: 15px;
+}
+
+.main-indexes ul,
+.popular-stocks ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
 }

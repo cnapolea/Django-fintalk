@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../static/css/base_style.css">
 
         <script src="https://kit.fontawesome.com/011ed67745.js"></script>
@@ -18,42 +19,47 @@
     <body>
         <div class="outside-container">
             <nav>
-                <div class="main-container">
+                <div class="nav-links">
+                    <div class="site-name">
+                        <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
+                        <h3>Fintalk World</h3>
+                    </div>
+                    
+                    <!-- Space Assigned for authenticated User -->
 
-                </div>
-                <div class="site-name">
-                    <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer" height="80px" width="80px">
-                    <h3>Fintalk World</h3>
-                </div>
-                
-                <div class="auth-links">
-                    <ul>
-                        <li><a href="">Sign Up</a></li>        
-                        <li><a href="">Log In</a></li>        
-                    </ul>
-                </div>
+                    <div class="auth-links">
+                        <ul>
+                            <li><a href="">Sign Up</a></li>        
+                            <li class="login"><a href="">Log In</a></li>        
+                        </ul>
+                    </div>
+                </div>    
             </nav>
+
+            <div class="indexes-bar">
+                    <div class="main-indexes">
+                        <ul>
+                            <li>S&P500: xxx</li>
+                            <li>DJI: xxx</li>
+                            <li>NASDAQ: xxx</li>
+                        </ul>
+                    </div>
+    
+                    <div class="popular-stocks">
+                        <ul>
+                            <li>Tesla: xxx</li>
+                            <li>Facebook: xxx</li>
+                            <li>CVX: xxx</li>
+                            <li>APL: xxx</li>
+                            <li>AMZ: xxx</li>
+                        </ul>
+                    </div>
+                </div>
         
-
-            <div class="stock-index">
-                <div class="main-indexes">
-                    <ul>
-                        <li>S&P500: xxx</li>
-                        <li>DJI: xxx</li>
-                        <li>NASDAQ: xxx</li>
-                    </ul>
-                </div>
-
-                <div class="popular-stocks">
-                    <ul>
-                        <li>Tesla: xxx</li>
-                        <li>Facebook: xxx</li>
-                        <li>CVX: xxx</li>
-                        <li>APL: xxx</li>
-                        <li>AMZ: xxx</li>
-                    </ul>
-                </div>
+            <div class="main-container">
+                {% block body%}{% endblock %}
             </div>
+            
 
 
         </div>
