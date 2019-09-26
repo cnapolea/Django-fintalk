@@ -13,52 +13,47 @@ body {
     height: 100vh;
 }
 
-.outside-container nav {
-    background: lightseagreen;
-}
-
-
-
 .nav-links {
+    background: lightseagreen;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center; 
     letter-spacing: 2px;
+    height: 9%;
 }
 
-.nav-links .site-name,
-.nav-links .auth-links ul {
+.nav-links .site-name {
+    width: 60vw;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links .site-name img {
+    width: 7vw;
+    height: 50px;
+}
+
+.nav-links .site-name h3 {
+    color: white;
+    font-size: 20px;
+}
+
+
+.nav-links .auth-links {
+    display: flex;
+}
+
+.auth-links ul {
+    list-style-type: none;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.nav-links .site-name img {
-    width: 100px;
-    height: 60px;
-}
-
-.nav-links .site-name h3 {
-    color: white;
-    font-size: 25px;
-}
-
-.nav-links .auth-links {
-    font-size: 20px;
-    margin-right: 5%;
-}
-
-.auth-links .login{
-    margin-left: 20px;
-}
-
-.auth-links ul {
-    list-style: none;
-}
-
 .auth-links ul li a{
     text-decoration: none;
     color: white;
+    font-size: 20px;
     cursor: pointer;
     background: transparent;
     border-radius: 10%;
@@ -68,6 +63,14 @@ body {
 
 .auth-links ul li a:hover {
     background: black;
+}
+
+.burger-menu .line {
+    background: white;
+    width: 33px;
+    height: 3px;
+    margin-top: 4px;
+    display: none;
 }
 
 /* Space Assigned for Authenticated User */
