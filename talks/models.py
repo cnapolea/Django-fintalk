@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Talk(models.Model):
     """Talks will be created by admins only. These will be relevant topics related to 
-Finance, where users will be able to add their own topics in order to create a conversation."""
+    Finance, where users will be able to add their own topics in order to create a conversation."""
 
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField()
@@ -30,8 +30,7 @@ Finance, where users will be able to add their own topics in order to create a c
         return recent_topics
     
 class FollowTalk(models.Model):
-    """FollowTalk is a many-to-many middle table, which allows users to follow as many talks
-they wish and at the same time, a talk can be followed by n users."""
+    """FollowTalk is a many-to-many middle table, which allows users to follow as many talks they wish and at the same time, a talk can be followed by n users."""
 
     user = models.ForeignKey(User, related_name='follows_talk', on_delete=models.CASCADE)
     talk = models.ManyToManyField(Talk, related_name='followers')
@@ -76,4 +75,4 @@ class LikePost(models.Model):
 
 class UserFollowUser(models.Model):
     follower = models.ForeignKey(User, related_name='follows', on_delete=models.CASCADE)
-    being_followed = models.ManyToManyField(User, related_name='is_followed_by')      
+    being_followed = models.ManyToManyField(User, related_name='is_followed_by')

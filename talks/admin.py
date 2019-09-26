@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Talk, FollowTalk, Topic, Post, LikePost, UserFollowUser
+
+admin.site.register(Talk)
+admin.site.register(Topic)
+admin.site.register(Post)
