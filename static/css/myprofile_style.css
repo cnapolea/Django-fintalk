@@ -1,0 +1,62 @@
+.image{
+
+	border-radius: 50%;
+	border-color: #ded6a0;
+	border-style: solid;
+	margin-bottom: 5px;
+	transition: 2s;
+
+}
+
+.image:hover{
+
+	transform: scale(1.1);
+
+}
+
+.text-image{
+
+	color: #ded6a0 !important;
+
+}
+
+.thead{
+
+	text-align: center !important;
+
+}
+
+.d-flex.justify-content-center.info{
+
+	display: block !important;
+    width: 38%;
+    margin-left: 30%;
+    font-weight: 600;
+
+}
+
+
+.table-row{
+	text-align: center;
+}
+
+.table-one{
+	margin-top: -2px;
+	background-color: #34343400;
+	color: #ded6a0;
+	margin-left: 28px;
+}
+
+.posts-wrapper{
+
+	margin-bottom: 20px;
+
+}
+
+.fa-edit:before {
+    margin-left: 4px;
+}
+
+a.profile-visitor{
+	color: #ded6a0 !important;
+}

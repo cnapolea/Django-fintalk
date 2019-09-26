@@ -1,0 +1,144 @@
+h1{
+  color: #ded6a0;
+  text-align: center;
+  font-family: DejaVu Sans monospace;
+}
+
+table{
+  background-color: #ded6a0;
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 0.75rem;
+}
+
+th{
+  text-align: center !important;
+}
+
+.nav-link{
+  color: #ded6a061 !important;
+}
+
+
+.image{
+
+  border-radius: 50%;
+  border-color: #ded6a0;
+  border-style: solid;
+  margin-bottom: 5px;
+
+}
+
+/*a.go-back-link{
+  color: #ded6a061 !important;
+}*/
+
+.btn{
+  background-color: #ded6a0 !important;
+  margin-top: 45px;
+}
+
+td.align-to-center{
+  text-align: center;
+}
+
+/* post.html section */
+
+div.card-title.post{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+div.card.post{
+  margin-top: 30px;
+  width: 60%;
+  background-color: #ded6a0;
+}
+
+/* User profile link */
+
+.profile-link{
+  color: #ded6a0 !important;
+}
+
+
+.btn.type1.post{
+  margin-bottom: 0px;
+  margin-top: -6px !important;
+}
+
+div.body-user{
+  margin-left: 20px;
+}
+
+a.btn.type1{
+  background-color: #323232 !important;
+  color: #ded6a0 !important;
+}
+
+a.btn.type1.outside{
+  margin-left: 20px;
+  margin-bottom: 10px
+}
+
+div.body-visitor{
+  margin-left: 50px;
+}
+
+
+.card.post.visitor{
+  background-color: #323232 !important;
+  color: #ded6a0 !important;
+}
+
+button.btn.btn-primary{
+  margin-top: -6px !important;
+}
+
+/*
+Pagination button
+*/
+
+.pag-btn{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pag-btn.posts{
+  margin-left: 20px;
+}
+
+.page-link{
+  background-color: #323232 !important;
+  border: 1px solid #ded6a0 !important;
+  color: #ded6a0 !important;
+}
+
+.page-link.current{
+  background-color: #ded6a0 !important;
+  color: #323232 !important;
+}
+
+.page-link.dis{
+  color: #75725e !important;
+}
+
+.text-muted{
+  font-size: inherit;
+}
+
+.fa-edit:before {
+    margin-left: 4px;
+}
+
+.fa-heart:before{
+  margin-right: 3px;
+}
+
+i.fa-visitor{
+  color: #ded6a0;
+}
+
+.fa-trash-alt{
+  margin-left: 3px;
+}
