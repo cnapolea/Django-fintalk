@@ -18,115 +18,102 @@
 
     <body>
         <div class="outside-container">
-
-            <div class="nav-links">
-                <div class="site-name">
-                    <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
-                    <h3>Fintalk World</h3>
-                </div>
-                
-                <!-- Space Assigned for authenticated User -->
-
-                <div class="burger-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>  
-
-                <div class="auth-links">
-                    <ul>
-                        <li><a href="">Sign Up</a></li>        
-                        <li class="login"><a href="">Log In</a></li>        
-                    </ul>   
-                </div>
-
-            </div>
-                  
-
-            <div class="indexes-bar">
+            <div class="indexes-bar" id="slider">
+                    <div class="slider-btn">
+                        <button id="slide-left">
+                            <img src="static/images/arrow-left-solid.svg" alt="">
+                        </button>
+                        <button id="slide-right" disabled>
+                            <img src="static/images/arrow-right-solid.svg" alt="">
+                        </button>
+                    </div>
                     <div class="main-indexes">
-                        <ul>
+                        
+                        <ul id="index-lst1">
                             <li>
-                                <span>S&P500: </span>
+                                <span>S&P500 </span>
                                 <span id="sp">xxx</span>
                             </li>
                             <li>
-                                <span>DJI:</span> 
+                                <span>DJI</span> 
                                 <span id="dji">xxx</span>
                             </li>
                             <li>
-                                <span>Nasdaq: </span> 
+                                <span>FTSE 100</span> 
+                                <span id="ftse">xxx</span>
+                            </li>
+                            <li>
+                                <span>Nasdaq </span> 
                                 <span id="ndaq">xxx</span>
                             </li>
                             <li>
-                                <span>Russell 2000: </span> 
+                                <span>Russell 2000 </span> 
                                 <span id="rsl">xxx</span>
                             </li>
                             <li>
-                                <span>Crude Oil: </span> 
-                                <span id="crudOil">xxx</span>
+                                <span>Nikkei 225 </span> 
+                                <span id="nkk">xxx</span>
                             </li>
+                        </ul>
+                        <ul id="index-lst2">
                             <li>
-                                <span>EUR/USD: </span>
-                                <span id="eu-usd">xxx</span>
-                            </li>
-                            <li>
-                                <span>BTC USD: </span>
+                                <span>BTC-USD </span>
                                 <span id="btc">xxx</span>
                             </li>
                             <li>
-                                <span>EUR/USD: </span>
+                                <span>EUR/USD </span>
                                 <span id="eu-usd">xxx</span>
                             </li>
                             <li>
-                                <span>GBP/USD: </span>
+                                <span>EUR/USD </span>
+                                <span id="eu-usd">xxx</span>
+                            </li>
+                            <li>
+                                <span>GBP/USD </span>
                                 <span id="gbp-usd">xxx</span>
                             </li>
                             <li>
-                                <span>10-Yr Bond: </span>
+                                <span>USD/JPY </span>
+                                <span id="usd-jp">xxx</span>
+                            </li>
+                            <li>
+                                <span>10-Yr Bond </span>
                                 <span id="bond">xxx</span>
                             </li>
-    
+                            <li>
+                                <span>Crude Oil </span> 
+                                <span id="crudOil">xxx</span>
+                            </li>
+                            <li>
+                                <span>Gold </span> 
+                                <span id="gold">xxx</span>
+                            </li>
                         </ul>
+                        
                     </div>
+
+            </div>
+                <div class="nav-links">
+                    <div class="site-name">
+                        <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
+                        <h3>Fintalk World</h3>
+                    </div>
+                    
+                    <!-- Space Assigned for authenticated User -->
     
-                    <!-- <div class="popular-stocks">
-                        <p>Popular Stocks: </p>
+                    <div class="burger-menu">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>  
+    
+                    <div class="auth-links">
                         <ul>
-                            <li>
-                                <span id="stock1_ticker">
-                                    TSL
-                                </span>
-                                <span id='stock1'>xxx</span>
-                            </li>
-                            <li>
-                                <span id="stock2_ticker">
-                                    FBB
-                                </span>
-                                <span id='stock2'>xxx</span>
-                            </li>
-                            <li>
-                                <span id="stock3_ticker">
-                                    CVX
-                                </span>
-                                <span id='stock3'>xxx</span>
-                            </li>
-                            <li>
-                                <span id="stock4_ticker">
-                                    APL
-                                </span>
-                                <span id='stock4'>xxx</span>
-                            </li>
-                            <li>
-                                <span id="stock5_ticker">
-                                    AMZ
-                                </span>
-                                <span id='stock5'>xxx</span>
-                            </li>
-                        </ul>
-                    </div> -->
+                            <li><a href="">Sign Up</a></li>        
+                            <li class="login"><a href="">Log In</a></li>        
+                        </ul>   
+                    </div>
                 </div>
-        
             <div class="main-container">
                 <div class="sidebar-nav">
 
@@ -158,5 +145,6 @@
             
 
         </div>
+        <script src="/static/js/base.js"></script>
     </body>
 </html>
