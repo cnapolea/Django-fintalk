@@ -27,6 +27,12 @@
                 
                 <!-- Space Assigned for authenticated User -->
 
+                <div class="burger-menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>  
+
                 <div class="auth-links">
                     <ul>
                         <li><a href="">Sign Up</a></li>        
@@ -34,36 +40,120 @@
                     </ul>   
                 </div>
 
-                <div class="burger-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>  
             </div>
                   
 
             <div class="indexes-bar">
                     <div class="main-indexes">
                         <ul>
-                            <li>S&P500: xxx</li>
-                            <li>DJI: xxx</li>
-                            <li>NASDAQ: xxx</li>
+                            <li>
+                                <span>S&P500: </span>
+                                <span id="sp">xxx</span>
+                            </li>
+                            <li>
+                                <span>DJI:</span> 
+                                <span id="dji">xxx</span>
+                            </li>
+                            <li>
+                                <span>Nasdaq: </span> 
+                                <span id="ndaq">xxx</span>
+                            </li>
+                            <li>
+                                <span>Russell 2000: </span> 
+                                <span id="rsl">xxx</span>
+                            </li>
+                            <li>
+                                <span>Crude Oil: </span> 
+                                <span id="crudOil">xxx</span>
+                            </li>
+                            <li>
+                                <span>EUR/USD: </span>
+                                <span id="eu-usd">xxx</span>
+                            </li>
+                            <li>
+                                <span>BTC USD: </span>
+                                <span id="btc">xxx</span>
+                            </li>
+                            <li>
+                                <span>EUR/USD: </span>
+                                <span id="eu-usd">xxx</span>
+                            </li>
+                            <li>
+                                <span>GBP/USD: </span>
+                                <span id="gbp-usd">xxx</span>
+                            </li>
+                            <li>
+                                <span>10-Yr Bond: </span>
+                                <span id="bond">xxx</span>
+                            </li>
+    
                         </ul>
                     </div>
     
-                    <div class="popular-stocks">
+                    <!-- <div class="popular-stocks">
+                        <p>Popular Stocks: </p>
                         <ul>
-                            <li>Tesla: xxx</li>
-                            <li>Facebook: xxx</li>
-                            <li>CVX: xxx</li>
-                            <li>APL: xxx</li>
-                            <li>AMZ: xxx</li>
+                            <li>
+                                <span id="stock1_ticker">
+                                    TSL
+                                </span>
+                                <span id='stock1'>xxx</span>
+                            </li>
+                            <li>
+                                <span id="stock2_ticker">
+                                    FBB
+                                </span>
+                                <span id='stock2'>xxx</span>
+                            </li>
+                            <li>
+                                <span id="stock3_ticker">
+                                    CVX
+                                </span>
+                                <span id='stock3'>xxx</span>
+                            </li>
+                            <li>
+                                <span id="stock4_ticker">
+                                    APL
+                                </span>
+                                <span id='stock4'>xxx</span>
+                            </li>
+                            <li>
+                                <span id="stock5_ticker">
+                                    AMZ
+                                </span>
+                                <span id='stock5'>xxx</span>
+                            </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
         
             <div class="main-container">
-                {% block body%}{% endblock %}
+                <div class="sidebar-nav">
+
+                    <div class="talk-links">
+                        <h3>Talks</h3>
+                        <ul>
+                            <li>Talk Name 1</li>
+                            <li>Talk Name 2</li>
+                            <li>Talk Name 3</li>
+                            <li><a href="">More Talks </a></li>
+                        </ul>
+                    </div>
+                    <div class="topic-links">
+                        <h3>Topics</h3>
+                        <ul>
+                                <li>Talk Name 1</li>
+                                <li>Talk Name 2</li>
+                                <li>Talk Name 3</li>
+                                <li><a href="">More Talks </a></
+                            </ul>
+                    </div>
+
+                </div>
+                <div class="content-container">
+                    {% block body%}{% endblock %}
+                </div>
+                
             </div>
             
 

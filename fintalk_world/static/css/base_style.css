@@ -11,6 +11,7 @@ body {
 .outside-container {
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .nav-links {
@@ -65,6 +66,10 @@ body {
     background: black;
 }
 
+
+.burger-menu {
+    cursor: pointer;
+}
 .burger-menu .line {
     background: white;
     width: 33px;
@@ -77,16 +82,136 @@ body {
 
 .indexes-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: whitesmoke;
-    font-size: 15px;
+    width: 100vw;
+    font-size: 10px;
 }
 
-.main-indexes ul,
-.popular-stocks ul{
+.main-indexes {
+    transform: translateX(100vw);
+    transition: transform .1s ease-in;
+}
+
+.main-indexes ul {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     list-style: none;
+    font-size: 15px;
+    
+}
+
+.main-indexes ul li span {
+    margin-left: 1.5vw;
+}
+
+.main-indexes ul li span:nth-child(1) {
+    font-weight: bolder;
+}
+
+@media only screen and (max-width: 700px) {
+    .nav-links .auth-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links .auth-links{
+        top:8vh;
+        position: fixed;
+        height: 100vh;
+        background: lightseagreen;
+        right: 0;
+        width: 40vw;
+        text-align: center;
+        transform: translateX(100vw);
+        transition: transform .5s ease-in;
+    }
+
+    .auth-links ul li a:hover {
+        background:transparent;
+    }
+
+    .auth-links ul li {
+        padding: 10px;
+        width: 100%;
+        background: transparent;
+        transition: all .5s;
+    }
+
+    .auth-links ul li:hover {
+        background: black;
+    }
+
+    .burger-menu .line{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-links .site-name img {
+        width: 10vw;
+        height: 50px;
+    }
+}
+
+/* Start main container*/
+.main-container {
+    display: flex;
+}
+
+.main-container .sidebar-nav {
+    height: 85.7vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;
+    /* justify-content: space-around; */
+    align-items: center;
+    text-align: center;
+  
+}
+
+.sidebar-nav .talk-links {
+    width: 100%;
+    /* border-bottom: black solid 1px; */
+}
+
+.sidebar-nav .topic-links {
+    width: 100%;
+}
+
+.talk-links {
+    margin-bottom: 8vh;
+}
+
+.talk-links h3,
+.topic-links h3 {
+    font-weight: bolder;
+    margin-bottom: 2vh;
+    border-top: black 1px solid;
+    border-bottom: black 1px solid;
+    color: black; 
+}
+
+.talk-links ul,
+.topic-links ul {
+    list-style-type: none;
+}
+
+.talk-links ul li,
+.topic-links ul li{
+    margin-top: 4vh;
+    padding: 5px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: all .5s;
+}
+.talk-links ul li:hover,
+.topic-links ul li:hover{
+    background: lightseagreen;
+    color: white;
+}
+
+.talk-links ul li a,
+.topic-links ul li a{
+    color: lightgray;
+    text-decoration: none;
 }
