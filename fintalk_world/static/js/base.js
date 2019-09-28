@@ -15,7 +15,7 @@ const run_app = () => {
                 rightArrow.removeAttribute('disabled', '');
                 rightArrow.style.opacity = '1';
                 leftArrow.style.opacity = '.5';
-                indexLst1.style.transform = `translateX(-100vw)`;
+                indexLst1.style.transform = `translateX(-200vw)`;
                 indexLst2.style.transform = `translateX(-100vw)`;
                 counter ++;
                 leftArrow.setAttribute('disabled', '');
