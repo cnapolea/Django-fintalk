@@ -146,50 +146,6 @@ body {
     font-weight: bolder;
 }
 
-@media only screen and (max-width: 700px) {
-    .nav-links .auth-links ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nav-links .auth-links{
-        top:8vh;
-        position: fixed;
-        height: 100vh;
-        background: lightseagreen;
-        right: 0;
-        width: 40vw;
-        text-align: center;
-        transform: translateX(100vw);
-        transition: transform .5s ease-in;
-    }
-
-    .auth-links ul li a:hover {
-        background:transparent;
-    }
-
-    .auth-links ul li {
-        padding: 10px;
-        width: 100%;
-        background: transparent;
-        transition: all .5s;
-    }
-
-    .auth-links ul li:hover {
-        background: black;
-    }
-
-    .burger-menu .line{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .nav-links .site-name img {
-        width: 10vw;
-        height: 50px;
-    }
-}
-
 /* Start main container*/
 .main-container {
     display: flex;
@@ -254,4 +210,171 @@ body {
 .topic-links ul li a{
     color: lightgray;
     text-decoration: none;
+}
+
+@media only screen and ( max-width: 1440px) {
+    .main-container .sidebar-nav {
+        height: 88vh;
+    }
+
+}
+@media only screen and ( max-width: 1400px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+
+
+@media only screen and ( max-width: 1280px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+
+@media only screen and ( max-width: 1700px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+@media only screen and ( max-width: 1440px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+
+
+@media only screen and ( max-width: 1024px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+@media only screen and ( max-height: 768px) {
+    .main-container .sidebar-nav {
+        height: 87.5vh;
+    }
+
+}
+
+@media only screen and ( max-height: 720px) {
+    .main-container .sidebar-nav {
+        height: 86.9vh;
+    }
+
+}
+
+@media only screen and ( max-width: 768px) {
+    .main-container .sidebar-nav {
+        display: flex;
+        height: 86.9vh;
+    }
+    .auth-links ul li a {
+        font-size: 16px;
+    }
+    .nav-links .site-name h3 {
+        font-size: 16px;
+    }
+    .nav-links .site-name img {
+        width: 6vw;
+        height: 50px;
+    }
+}
+
+@media only screen and ( max-width: 731px) {
+    .main-container .sidebar-nav {
+        display: none;
+    }
+    
+    .indexes-bar {
+        display: none;
+    }
+    .site-name img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .nav-links .auth-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links .auth-links{
+        top:8vh;
+        position: absolute;
+        height: 100vh;
+        background: lightseagreen;
+        right: 0;
+        width: 40vw;
+        text-align: center;
+        transform: translateX(100vw);
+        transition: transform .5s ease-in;
+    }
+
+    .auth-links ul li a:hover {
+        background:transparent;
+    }
+
+    .auth-links ul li {
+        padding: 10px;
+        width: 100%;
+        background: transparent;
+        transition: all .5s;
+    }
+
+    .auth-links ul li:hover {
+        background: black;
+    }
+
+    .burger-menu .line{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-links .site-name img {
+        width: 10vw;
+        height: 50px;
+    }
+}
+
+@media only screen and ( max-width: 640px) {
+    .main-container .sidebar-nav {
+        display: none;
+    }
+    
+    .indexes-bar {
+        display: none;
+    }
+    .site-name img {
+        display: none;
+    }
+}
+@media only screen and ( max-width: 411px) {
+    .main-container .sidebar-nav {
+        display: none;
+    }
+    
+    .indexes-bar {
+        display: none;
+    }
+    .site-name img {
+        display: none;
+    }
+}
+
+@media only screen and ( max-width: 360px) {
+    .main-container .sidebar-nav {
+        display: none;
+    }
+    
+    .indexes-bar {
+        display: none;
+    }
+    .site-name img {
+        display: none;
+    }
 }
