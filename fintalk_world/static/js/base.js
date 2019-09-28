@@ -34,7 +34,20 @@ const run_app = () => {
             }
         });
     };
-    
     indexSlider();
+    
+    // Burger button dropdown menu
+    const menuDropDown = () => {
+        
+        const burgerMenu = document.querySelector('.burger-menu');
+        const authLinks = document.querySelectorAll('.auth-links');
+
+        burgerMenu.addEventListener('click', () => {
+            console.log(authLinks[0].classList);
+            authLinks[0].classList.toggle('burger-active');
+        });
+    };
+    menuDropDown();
+
 };
 run_app();
