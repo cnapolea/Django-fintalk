@@ -41,30 +41,28 @@ body {
     font-size: 20px;
 }
 
-
-.nav-links .auth-links {
+.auth-links {
     display: flex;
-}
-
-.auth-links ul {
     list-style-type: none;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.auth-links ul li a{
+.auth-links li a{
     text-decoration: none;
     color: white;
     font-size: 20px;
     cursor: pointer;
+}
+
+.auth-links li {
     background: transparent;
     border-radius: 10%;
     padding: 10px;
     transition: all .5s;
 }
-
-.auth-links ul li a:hover {
+.auth-links li:hover {
     background: black;
 }
 
@@ -212,6 +210,10 @@ body {
     text-decoration: none;
 }
 
+.burger-active {
+    transform: translateX(0vw) !important;
+}
+
 @media only screen and ( max-width: 1440px) {
     .main-container .sidebar-nav {
         height: 88vh;
@@ -306,27 +308,29 @@ body {
     .nav-links .auth-links{
         top:8vh;
         position: absolute;
+        flex-direction: column;
         height: 100vh;
         background: lightseagreen;
         right: 0;
         width: 40vw;
         text-align: center;
         transform: translateX(100vw);
-        transition: transform .5s ease-in;
+        transition: transform .8s ease-in;
     }
 
     .auth-links ul li a:hover {
         background:transparent;
     }
 
-    .auth-links ul li {
+    .auth-links li {
+        border-radius: 0%;
         padding: 10px;
         width: 100%;
         background: transparent;
         transition: all .5s;
     }
 
-    .auth-links ul li:hover {
+    .auth-links li:hover {
         background: black;
     }
 
@@ -340,6 +344,7 @@ body {
         height: 50px;
     }
 }
+
 
 @media only screen and ( max-width: 640px) {
     .main-container .sidebar-nav {
