@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../static/css/base_style.css">
 
         <script src="https://kit.fontawesome.com/011ed67745.js"></script>
-        
+        {% block stylesheet %}{% endblock %}
         <title>
             {% block title %}{% endblock %}
         </title>
@@ -17,129 +17,125 @@
     </head>
 
     <body>
-        <div class="outside-container">
-            <div class="indexes-bar" id="slider">
-                    <div class="slider-btn">
-                        <button id="slide-left">
-                            <img src="static/images/arrow-left-solid.svg" alt="">
-                        </button>
-                        <button id="slide-right" disabled>
-                            <img src="static/images/arrow-right-solid.svg" alt="">
-                        </button>
-                    </div>
-                    <div class="main-indexes">
+        
+        <div class="indexes-bar" id="slider">
+                <div class="slider-btn">
+                    <button id="slide-left">
+                        <img src="static/images/arrow-left-solid.svg" alt="">
+                    </button>
+                    <button id="slide-right" disabled>
+                        <img src="static/images/arrow-right-solid.svg" alt="">
+                    </button>
+                </div>
+                <div class="main-indexes">
+                    
+                    <ul id="index-lst1">
+                        <li>
+                            <span>S&P500 </span>
+                            <span id="sp">xxx</span>
+                        </li>
+                        <li>
+                            <span>DJI</span> 
+                            <span id="dji">xxx</span>
+                        </li>
+                        <!-- <li>
+                            <span>FTSE 100</span> 
+                            <span id="ftse">xxx</span>
+                        </li> -->
+                        <li>
+                            <span>Nasdaq </span> 
+                            <span id="ndaq">xxx</span>
+                        </li>
+                        <li>
+                            <span>Russell 2000 </span> 
+                            <span id="rsl">xxx</span>
+                        </li>
+                        <!-- <li>
+                            <span>Nikkei 225 </span> 
+                            <span id="nkk">xxx</span>
+                        </li> -->
+                        <li>
+                            <span>BTC-USD </span>
+                            <span id="btc">xxx</span>
+                        </li>
+                    </ul>
+                    <ul id="index-lst2">
                         
-                        <ul id="index-lst1">
-                            <li>
-                                <span>S&P500 </span>
-                                <span id="sp">xxx</span>
-                            </li>
-                            <li>
-                                <span>DJI</span> 
-                                <span id="dji">xxx</span>
-                            </li>
-                            <!-- <li>
-                                <span>FTSE 100</span> 
-                                <span id="ftse">xxx</span>
-                            </li> -->
-                            <li>
-                                <span>Nasdaq </span> 
-                                <span id="ndaq">xxx</span>
-                            </li>
-                            <li>
-                                <span>Russell 2000 </span> 
-                                <span id="rsl">xxx</span>
-                            </li>
-                            <!-- <li>
-                                <span>Nikkei 225 </span> 
-                                <span id="nkk">xxx</span>
-                            </li> -->
-                            <li>
-                                <span>BTC-USD </span>
-                                <span id="btc">xxx</span>
-                            </li>
-                        </ul>
-                        <ul id="index-lst2">
-                            
-                            <li>
-                                <span>EUR/USD </span>
-                                <span id="eu-usd">xxx</span>
-                            </li>
-                            <li>
-                                <span>GBP/USD </span>
-                                <span id="gbp-usd">xxx</span>
-                            </li>
-                            <li>
-                                <span>USD/JPY </span>
-                                <span id="usd-jp">xxx</span>
-                            </li>
-                            <!-- <li>
-                                <span>10-Yr Bond </span>
-                                <span id="bond">xxx</span>
-                            </li> -->
-                            <!-- <li>
-                                <span>Crude Oil </span> 
-                                <span id="crudOil">xxx</span>
-                            </li>
-                            <li>
-                                <span>Gold </span> 
-                                <span id="gold">xxx</span>
-                            </li> -->
-                        </ul>
-                        
-                    </div>
+                        <li>
+                            <span>EUR/USD </span>
+                            <span id="eu-usd">xxx</span>
+                        </li>
+                        <li>
+                            <span>GBP/USD </span>
+                            <span id="gbp-usd">xxx</span>
+                        </li>
+                        <li>
+                            <span>USD/JPY </span>
+                            <span id="usd-jp">xxx</span>
+                        </li>
+                        <!-- <li>
+                            <span>10-Yr Bond </span>
+                            <span id="bond">xxx</span>
+                        </li> -->
+                        <!-- <li>
+                            <span>Crude Oil </span> 
+                            <span id="crudOil">xxx</span>
+                        </li>
+                        <li>
+                            <span>Gold </span> 
+                            <span id="gold">xxx</span>
+                        </li> -->
+                    </ul>
+                    
+                </div>
+
+        </div>
+            <div class="nav-links">
+                <div class="site-name">
+                    <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
+                    <h3>Fintalk World</h3>
+                </div>
+                
+                <!-- Space Assigned for authenticated User -->
+
+                <div class="burger-menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>  
+
+                <ul class="auth-links">
+                    <li><a href="">Sign Up</a></li>        
+                    <li class="login"><a href="">Log In</a></li>        
+                </ul>   
 
             </div>
-                <div class="nav-links">
-                    <div class="site-name">
-                        <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
-                        <h3>Fintalk World</h3>
-                    </div>
-                    
-                    <!-- Space Assigned for authenticated User -->
-    
-                    <div class="burger-menu">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div>  
-    
-                    <ul class="auth-links">
-                        <li><a href="">Sign Up</a></li>        
-                        <li class="login"><a href="">Log In</a></li>        
-                    </ul>   
+        <div class="main-container">
+            <div class="sidebar-nav">
 
+                <div class="talk-links">
+                    <h3>Talks</h3>
+                    <ul>
+                        <li>Talk Name 1</li>
+                        <li>Talk Name 2</li>
+                        <li>Talk Name 3</li>
+                        <li><a href="">More Talks </a></li>
+                    </ul>
                 </div>
-            <div class="main-container">
-                <div class="sidebar-nav">
-
-                    <div class="talk-links">
-                        <h3>Talks</h3>
-                        <ul>
+                <div class="topic-links">
+                    <h3>Topics</h3>
+                    <ul>
                             <li>Talk Name 1</li>
                             <li>Talk Name 2</li>
                             <li>Talk Name 3</li>
-                            <li><a href="">More Talks </a></li>
+                            <li><a href="">More Talks </a></
                         </ul>
-                    </div>
-                    <div class="topic-links">
-                        <h3>Topics</h3>
-                        <ul>
-                                <li>Talk Name 1</li>
-                                <li>Talk Name 2</li>
-                                <li>Talk Name 3</li>
-                                <li><a href="">More Talks </a></
-                            </ul>
-                    </div>
+                </div>
 
-                </div>
-                <div class="content-container">
-                    {% block body%}{% endblock %}
-                </div>
-                
             </div>
-            
-
+            <div class="content-container">
+                {% block body%}{% endblock %}
+            </div>
         </div>
         <script src="/static/js/base.js"></script>
     </body>

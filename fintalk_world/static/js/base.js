@@ -163,7 +163,7 @@ const run_app = () => {
 
     };
 
-    apiGenerator();
+    // apiGenerator();
 
     // Burger button dropdown menu
     const menuDropDown = () => {
