@@ -64,6 +64,10 @@
     margin-right: 1vw;
 }
 
+.talk-name {
+    color: lightseagreen;
+}
+
 .board-footer {
     display: flex;
     justify-content: space-between;
@@ -79,3 +83,4 @@
 .timestamp {
     margin-left: 6px; 
 }
+
