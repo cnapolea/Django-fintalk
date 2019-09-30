@@ -12,7 +12,11 @@ class IndexListView(ListView):
     """Homepage view. This will receive a list of talk (most populars) 
     which will be displayed to users"""
 
-    model = Talk
-    context_object_name = 'talks'
+    model = Topic
+    context_object_name = 'topics'
     template_name = 'index.html'
     
+    # def get_queryset(self):
+    #     self.talks = get_object_or_404(Talk)
+    #     queryset = self.talks
+    #     return queryset
