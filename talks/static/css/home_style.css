@@ -1,0 +1,81 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.search-bar {
+    margin-bottom: 2vh;
+    width: 64vw;
+    height: 5vh;
+    border: 3px solid lightseagreen;
+    border-radius: 2%;
+    padding-left: 5px;
+}
+.search-btn {
+    width: 18%;
+    padding: 7px;
+    font-size: 15px;
+    border-radius: 6%;
+    background: whitesmoke;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.search-btn:hover {
+    background: lightseagreen;
+    color: white;
+    border: lightseagreen;
+    /* border-radius: 2%; */
+}
+
+.recent-topics a {
+    text-decoration: none;
+    color: black;
+}
+
+.topic-board {
+    background: whitesmoke;
+    padding: 2%;
+    border-radius: 2%;
+    transition: all .3s;
+    margin-bottom: 5vh;
+}
+
+.topic-board:hover {
+    box-shadow: 5px 5px 8px 1px grey;
+}
+
+.board-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.user-avatar {
+    width: 4%;
+    margin-right: 1vw;
+}
+
+.board-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+    align-items: center;
+}
+
+.cmt-icon {
+    width: 7%;
+    margin-right: 3px;
+}
+
+.timestamp {
+    margin-left: 6px; 
+}

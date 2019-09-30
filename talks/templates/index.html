@@ -1,3 +1,79 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/home_style.css">
+{% endblock %}
+
 {% block title%}Homepage - Fintalk{% endblock %}
+
+{% block body %}
+    <div class="search">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input class="search-bar" type="text" maxlength="200" placeholder="E.g. Cryptocurrency"><br>
+            <button class="search-btn">Search Talk</button>
+        </form>
+        
+    </div>
+    <div class="recent-topics">
+        <div class="topic-board">
+            <a href="">
+                <div class="board-header">
+                    <img src="/static/image/user-circle-regular.svg" alt="" class="user-avatar">
+                    <span><p>Cryptocurrency - posted by: XYZ</p></span> 
+                </div>
+                <div class="board-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A pellentesque sit amet porttitor eget. Accumsan in nisl nisi scelerisque eu ultrices. Sapien pellentesque habitant morbi tristique senectus et. Massa massa ultricies mi quis hendrerit dolor magna. Odio pellentesque diam volutpat commodo sed egestas.
+                </div>
+                <div class="board-footer">
+                    <div class="comment-section">
+                        <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
+                        <span>10k</span>
+                    </div>
+                    
+                    <span class="timestamp">Posted xx hours ago</span>
+                </div>
+            </a>
+        </div>    
+        <div class="topic-board">
+            <a href="">
+                <div class="board-header">
+                    <img src="/static/image/user-circle-regular.svg" alt="" class="user-avatar">
+                    <span><p>Cryptocurrency - posted by: XYZ</p></span> 
+                </div>
+                <div class="board-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A pellentesque sit amet porttitor eget. Accumsan in nisl nisi scelerisque eu ultrices. Sapien pellentesque habitant morbi tristique senectus et. Massa massa ultricies mi quis hendrerit dolor magna. Odio pellentesque diam volutpat commodo sed egestas.
+                </div>
+                <div class="board-footer">
+                    <div class="comment-section">
+                        <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
+                        <span>10k</span>
+                    </div>
+                    
+                    <span class="timestamp">Posted xx hours ago</span>
+                </div>
+            </a>
+        </div>    
+        <div class="topic-board">
+            <a href="">
+                <div class="board-header">
+                    <img src="/static/image/user-circle-regular.svg" alt="" class="user-avatar">
+                    <span><p>Cryptocurrency - posted by: XYZ</p></span> 
+                </div>
+                <div class="board-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A pellentesque sit amet porttitor eget. Accumsan in nisl nisi scelerisque eu ultrices. Sapien pellentesque habitant morbi tristique senectus et. Massa massa ultricies mi quis hendrerit dolor magna. Odio pellentesque diam volutpat commodo sed egestas.
+                </div>
+                <div class="board-footer">
+                    <div class="comment-section">
+                        <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
+                        <span>10k</span>
+                    </div>
+                    
+                    <span class="timestamp">Posted xx hours ago</span>
+                </div>
+            </a>
+        </div>    
+
+    </div>
+{% endblock %} 
