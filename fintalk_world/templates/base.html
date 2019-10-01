@@ -104,30 +104,45 @@
                     <div class="line"></div>
                 </div>  
 
-                <ul class="auth-links">
-                    <li><a href="">Sign Up</a></li>        
-                    <li class="login"><a href="">Log In</a></li>        
-                </ul>   
+                {% if request.user.is_authenticated %}
+                    <div class="user-info-nav">
+                        <img class="user-icon-nav" src="/static/images/user-circle-regular.svg" alt="user icon">
+                        <h3 class="username-nav">{{request.user.username }}</h3>
+                        <img src="/static/images/drop-down-solid.svg" alt="A triangle pointing down" class="drop-icon">
+                    </div>
+                    <div class="auth-menu">
+                        <ul class="user-nav-menu">
+                            <li><a href="">My Profile</a></li>
+                            <li><a href="">Settings</a></li>
+                            <li><a href="">Log Out</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <ul class="auth-links">
+                        <li><a href="">Sign Up</a></li>        
+                        <li class="login"><a href="">Log In</a></li>        
+                    </ul>
+                {% endif %}
 
             </div>
         <div class="main-container">
             <div class="sidebar-nav">
 
                 <div class="talk-links">
-                    <h3>Talks</h3>
+                    <h3>Top Talks</h3>
                     <ul>
-                        <li>Talk Name 1</li>
-                        <li>Talk Name 2</li>
-                        <li>Talk Name 3</li>
+                        <li>{% block recent_talk_1 %}Talk Name 1{% endblock%}</li>
+                        <li>{% block recent_talk_2 %}Talk Name 2{% endblock%}</li>
+                        <li>{% block recent_talk_3 %}Talk Name 3{% endblock%}</li>
                         <li><a href="">More Talks </a></li>
                     </ul>
                 </div>
                 <div class="topic-links">
-                    <h3>Topics</h3>
+                    <h3>Your Topics</h3>
                     <ul>
-                            <li>Talk Name 1</li>
-                            <li>Talk Name 2</li>
-                            <li>Talk Name 3</li>
+                            <li>{% block topic_1 %}Topic 1{% endblock%}</li>
+                            <li>{% block topic_2 %}Topic 2{% endblock%}</li>
+                            <li>{% block topic_3 %}Topic 3{% endblock%}</li>
                             <li><a href="">More Talks </a></
                         </ul>
                 </div>

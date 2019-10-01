@@ -8,12 +8,6 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* .outside-container {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-} */
-
 .indexes-bar {
     display: flex;
     position: fixed;
@@ -21,6 +15,7 @@ body {
     align-items: center;
     font-size: 8px;
     white-space: nowrap;
+    z-index: 10;
 }
 
 .slider-btn {
@@ -88,6 +83,7 @@ body {
     letter-spacing: 2px;
     top: 27px;
     height: 9%;
+    
 }
 
 .nav-links .site-name {
@@ -144,6 +140,70 @@ body {
 }
 
 /* Space Assigned for Authenticated User */
+.user-info-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 13vw;
+}
+
+.user-icon-nav {
+    height: 35px;
+    width: 30px;
+    margin-right: 1vw;
+}
+
+.username-nav {
+    font-size: 17px;
+    color: white;
+    margin-right: .5vw;
+}
+
+.drop-icon {
+    height: 20px;
+    margin-bottom: 1px;
+    cursor: pointer;
+}
+
+.user-nav-menu {
+    list-style-type: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 0;
+    background: lightseagreen;
+    height: 100vh;
+    top: 9vh;
+    width: 23vw;
+    font-size: 18px;
+    text-align: center;
+    transform: translateY(-100vw);
+    transition: transform .5s ease-in; 
+}
+
+.drop-active {
+    transform: translateY(0vw);
+}
+
+.user-nav-menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+.user-nav-menu li {
+    transition: all .5s;
+    padding: 20px 0;
+    width: 100%;
+    margin: 10vh 0;
+}
+
+.user-nav-menu li:hover {
+    background: black;
+}
+
+
+
 
 /* Start main container*/
 .main-container {
@@ -260,14 +320,16 @@ body {
 }
 @media only screen and ( max-height: 768px) {
     .main-container .sidebar-nav {
-        height: 87.5vh;
+        height: 100vh;
+        top: 12.5vh;
     }
 
 }
 
 @media only screen and ( max-height: 720px) {
     .main-container .sidebar-nav {
-        height: 87.1vh;
+        height: 100vh;
+        top: 12.9vh;
     }
 
 }
