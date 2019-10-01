@@ -36,7 +36,6 @@ const run_app = () => {
         });
 
     };
-    indexSlider();
     
     const apiGenerator = () => {
         //Api of stokes
@@ -163,8 +162,6 @@ const run_app = () => {
 
     };
 
-    // apiGenerator();
-
     // Burger button dropdown menu
     const menuDropDown = () => {
         
@@ -176,7 +173,20 @@ const run_app = () => {
             authLinks[0].classList.toggle('burger-active');
         });
     };
-    menuDropDown();
 
+    //Arrow dropdown
+    const arrowDropDown = () => {
+        const arrow = document.querySelector('.drop-icon');
+        const navLinks = document.querySelector('.user-nav-menu');
+
+        arrow.addEventListener('click', () => {
+            navLinks.classList.toggle('drop-active');
+        });
+    };
+
+    // apiGenerator();
+    indexSlider();
+    menuDropDown();
+    arrowDropDown();
 };
 run_app();

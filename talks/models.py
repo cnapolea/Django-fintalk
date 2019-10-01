@@ -51,7 +51,7 @@ class Topic(models.Model):
     views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.subject
+        return (self.subject[:11] + "...")
     
     class Meta:
         ordering = ["-date_created"]
