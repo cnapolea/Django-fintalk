@@ -186,7 +186,13 @@ const run_app = () => {
 
     // apiGenerator();
     indexSlider();
-    menuDropDown();
-    arrowDropDown();
+    try {
+        arrowDropDown();
+    } catch {}
+    try {
+        menuDropDown();
+    } catch {}
+
+
 };
 run_app();

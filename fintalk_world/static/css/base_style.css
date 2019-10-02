@@ -97,6 +97,10 @@ body {
     height: 50px;
 }
 
+.site-name a {
+    text-decoration: none;
+}
+
 .nav-links .site-name h3 {
     color: white;
     font-size: 20px;
@@ -329,7 +333,7 @@ body {
 @media only screen and ( max-height: 720px) {
     .main-container .sidebar-nav {
         height: 100vh;
-        top: 12.9vh;
+        top: 12.8vh;
     }
 
 }

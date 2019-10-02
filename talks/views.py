@@ -16,7 +16,8 @@ class IndexListView(ListView):
     context_object_name = 'topics'
     template_name = 'index.html'
     
-    # def get_queryset(self):
-    #     self.talks = get_object_or_404(Talk)
-    #     queryset = self.talks
-    #     return queryset
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['talks'] = Talk.objects.all()[:3]
+        context['follow_talks'] = FollowTalk.objects.all()
+        return context
