@@ -64,6 +64,10 @@ class Topic(models.Model):
         """Returns the number of posts under this specific topic object."""
         post_count = self.posts.all().count()
         return post_count
+    
+    def get_most_recent(self):
+        """Get recent topics"""
+        return self[:3]
 
 class Post(models.Model):
     """User will create a post under a topic."""

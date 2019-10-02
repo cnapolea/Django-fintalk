@@ -93,16 +93,10 @@
             <div class="nav-links">
                 <div class="site-name">
                     <img src="/static/images/ftw_logo.svg" alt="graphs, code components, and coins leaving a computer">
-                    <h3>Fintalk World</h3>
+                    <a href="{% url 'homepage' %}"><h3>Fintalk World</h3></a>
                 </div>
                 
-                <!-- Space Assigned for authenticated User -->
-
-                <div class="burger-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>  
+                <!-- Space Assigned for authenticated User navbar-->
 
                 {% if request.user.is_authenticated %}
                     <div class="user-info-nav">
@@ -118,6 +112,12 @@
                         </ul>
                     </div>
                 {% else %}
+                    <div class="burger-menu">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>  
+
                     <ul class="auth-links">
                         <li><a href="">Sign Up</a></li>        
                         <li class="login"><a href="">Log In</a></li>        
@@ -129,22 +129,46 @@
             <div class="sidebar-nav">
 
                 <div class="talk-links">
-                    <h3>Top Talks</h3>
-                    <ul>
-                        <li>{% block recent_talk_1 %}Talk Name 1{% endblock%}</li>
-                        <li>{% block recent_talk_2 %}Talk Name 2{% endblock%}</li>
-                        <li>{% block recent_talk_3 %}Talk Name 3{% endblock%}</li>
-                        <li><a href="">More Talks </a></li>
-                    </ul>
+                    {% if follow_talks.count >= 3 %}
+                        
+                        <h3>Top Talks</h3>
+                        <ul>
+                            <li>{% block recent_talk_1 %}Talk Name 1{% endblock%}</li>
+                            <li>{% block recent_talk_2 %}Talk Name 2{% endblock%}</li>
+                            <li>{% block recent_talk_3 %}Talk Name 3{% endblock%}</li>
+                            <li><a href="">More Talks </a></li>
+                        </ul>
+                    {% else %}
+
+                        <h3>Recent Talks</h3>
+                        <ul>
+                            {% for talk in talks %} 
+                                <li>{{talk}}</li>
+                            {% endfor %}
+                            <li><a href="">More Talks </a></li>
+                        </ul>
+
+                    {% endif %}
                 </div>
                 <div class="topic-links">
-                    <h3>Your Topics</h3>
-                    <ul>
-                            <li>{% block topic_1 %}Topic 1{% endblock%}</li>
-                            <li>{% block topic_2 %}Topic 2{% endblock%}</li>
-                            <li>{% block topic_3 %}Topic 3{% endblock%}</li>
-                            <li><a href="">More Talks </a></
-                        </ul>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.topics.count >= 3 %}
+                            <h3>Your Topics</h3>
+                            <ul>
+                                {% for topic in request.user.topics.all|slice:":3" %}
+                                    <li>{{topic}}</li>
+                                {% endfor %}
+                                <li><a href="">More Talks </a></
+                            </ul>
+                        {% else%}
+                            <h3>Your Topics</h3>
+                            <a href="">Get engaged, create a topic.</a>
+                        {% endif%}
+
+                    {% else %}
+                        <h3>Your Topics</h3>
+                        <a href="">Get engaged, create a topic.</a>
+                    {% endif %}
                 </div>
 
             </div>
