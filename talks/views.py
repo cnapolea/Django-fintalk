@@ -38,12 +38,12 @@ def talkRequest(request):
             talk_names = [x.name for x in talks]
             
             if len(talk_names) >= 6:
-                data = {'Matched Talks': talk_names[:6]}
+                data = {'matchedTalks': talk_names}
             else:
-                data = {'Matched Talks': talk_names}
+                data = {'matchedTalks': talk_names}
 
             return JsonResponse(data)
         
         else:
-            data = {'Matched Talks': f'No talk starts with {user_input}'}
+            data = {'matchedTalks': f'No talk starts with {user_input}'}
             return JsonResponse(data)
