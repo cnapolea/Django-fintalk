@@ -185,7 +185,7 @@ const run_app = () => {
         });
     };
 
-    // apiGenerator();
+    apiGenerator();
     indexSlider();
     try {
         arrowDropDown();
