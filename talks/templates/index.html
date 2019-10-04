@@ -12,7 +12,14 @@
     <div class="search">
         <form action="" method="POST">
             {% csrf_token %}
-            <input class="search-bar" type="text" maxlength="200" placeholder="E.g. Cryptocurrency"><br>
+            <input class="search-bar" type="text" maxlength="200" placeholder="E.g. Cryptocurrency" name='talk-name-input' id="talk-name-input"><br>
+            <div class="possible-talks">
+                <ul class="results">
+                   <li>Result 1</li> 
+                   <li>Result 2</li> 
+                   <li>Result 3</li> 
+                </ul>
+            </div>
             <button class="search-btn">Search Talk</button>
         </form>
         
@@ -41,4 +48,7 @@
         {% endfor %}    
 
     </div>
+    <script src="/static/js/index_app.js"></script>
+
 {% endblock %} 
+

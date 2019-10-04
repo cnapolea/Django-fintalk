@@ -11,7 +11,6 @@
 }
 
 .search-bar {
-    margin-bottom: 2vh;
     width: 64vw;
     height: 5vh;
     border: 3px solid lightseagreen;
@@ -26,14 +25,42 @@
     background: whitesmoke;
     cursor: pointer;
     transition: all .5s;
+    margin-top: 2vh;
 }
 
 .search-btn:hover {
     background: lightseagreen;
     color: white;
     border: lightseagreen;
-    /* border-radius: 2%; */
 }
+
+.possible-talks {
+    border: 3px solid lightseagreen;
+    border-top: none;
+}
+
+.results {
+    list-style-type: none;
+    text-align: left;
+    width: 100%;
+}
+
+.results li {
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 2px;
+    transition: all .5s;
+}
+
+.results li:nth-last-child(1) {
+    border-bottom: none;
+}
+
+.results li:hover {
+    background: whitesmoke;
+}
+
 
 .recent-topics a {
     text-decoration: none;
