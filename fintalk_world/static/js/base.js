@@ -1,5 +1,6 @@
 const run_app = () => {
 
+
     // Index slider funtionality
     const indexSlider = () => {
         
