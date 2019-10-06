@@ -13,12 +13,12 @@ const indexApp = () => {
                 possibleTalks.classList.remove('possible-talks-active');
 
             } else if (typeof response.matchedTalks == 'string') {
+                searchResult.innerHTML='';
                 let listItem = document.createElement('li');
                     listItem.textContent = response.matchedTalks;
                     searchResult.appendChild(listItem);
                     possibleTalks.classList.add('possible-talks-active');
             } else {
-                
                 possibleTalks.classList.add('possible-talks-active');
                 for (index in response.matchedTalks) {
                     let listItem = document.createElement('li');
@@ -45,7 +45,7 @@ const indexApp = () => {
             var xhttp = new XMLHttpRequest();
 
             searchBar.addEventListener('input', () => {
-                
+                searchResult.innerHTML='';
                 xhttp.open('GET', `/ajax/talk_request?${searchBar.name}=${searchBar.value}`, true);                
 
                 xhttp.onreadystatechange = () => {
