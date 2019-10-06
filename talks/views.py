@@ -45,5 +45,5 @@ def talkRequest(request):
             return JsonResponse(data)
         
         else:
-            data = {'matchedTalks': f'No talk starts with {user_input}'}
+            data = {'matchedTalks': 'No results found'}
             return JsonResponse(data)
