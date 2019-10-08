@@ -9,11 +9,10 @@ const indexApp = () => {
         /* This function organizes and manages the data retrived from the response the ajax request got from the server*/
         const manageAjaxResponse = response => {
             if (response['matchedTalks'] == null) {
-                searchResult.innerHTML='';
                 possibleTalks.classList.remove('possible-talks-active');
 
             } else if (typeof response.matchedTalks == 'string') {
-                searchResult.innerHTML='';
+                
                 let listItem = document.createElement('li');
                     listItem.textContent = response.matchedTalks;
                     searchResult.appendChild(listItem);
