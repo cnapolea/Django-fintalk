@@ -1,0 +1,52 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="/static/css/auth_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Log In - Fintalk World</title>
+
+</head>
+<body>
+    <div class="content">
+
+        <section class="greeting">
+            <h1>Welcome To Fintalk World</h1>
+            <img src="/static/images/ftw_logo.svg" alt="fintalk logo">
+        </section>
+        <section class="user-info">
+            <div class="auth-box">
+                {% if form.non_field_errors %}
+                    <div class="non-field-errors-box">
+                        {% for error in form.non_field_errors %}
+                            <small class="error-non-field"><p>{{error}}</p></small>                        
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <form method="POST" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <label for="">{{field.label}} </label><br>
+                        {{field}} <br>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <small class="field-error"><p>{{error}}</p></small>
+                            {% endfor %} <br>  
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit">Log In</button><br>
+                    <small>Forgot your password, <a href="">click here.</a></small><br>
+                    <small>Not registered? <a href="">Sign up now!</a></small>
+                </form>
+            </div>    
+        </section>
+    </div>
+    
+    
+</body>
+</html>

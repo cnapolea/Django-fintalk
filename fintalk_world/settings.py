@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     #Third-Party apps
-    
+    #  'wtforms.ext.django',
+     
     # My Apps
     'talks',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'fintalk_world/static/',
 ]
+
+LOGIN_REDIRECT_URL = 'homepage'
+LOGOUT_REDIRECT_URL = 'login'
