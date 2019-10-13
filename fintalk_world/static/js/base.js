@@ -40,6 +40,11 @@ const run_app = () => {
     
     const apiGenerator = () => {
         //Api of stokes
+        const API_KEY_QL = 'yL75LomZDucQi96U23Ln',
+            API_KEY_AV = 'PNA7JS5UMRI0PG2D';
+
+        const QL_COMMODITY_URL = `https://www.quandl.com/api/v3/datasets/ODA/PALLFNF_INDEX.json?api_key=${API_KEY_QL}`;
+        const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY_AV}`;
 
         const sp = document.querySelector('#sp'), 
             dji = document.querySelector('#dji'),
@@ -50,26 +55,14 @@ const run_app = () => {
             gbpUsd = document.querySelector('#gbp-usd'), 
             usdJp = document.querySelector('#usd-jp');
 
-        let sp_symbol = "GSPC",
-            dji_symbol = "DJI",
-            // ftse_symbol = "UKX",
-            nasdaq_symbol = "NDAQ",
-            rut_symbol = "RUT";
-            // nkk_symbol = "NI225",
-            // bond_symbol = "TNX",
-            // crude_symbol = "CL=F",
-            // gold_symbol = "GC=F";
+        let sp_thicker= "SPX",
+            dji_thicker = "DJIA",
+            nasdaq_thicker = "COMP",
+            rut_thicker = "RUT",
+            nkk_thicker = "NIK";
+            
                    
-            const api_sp = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${sp_symbol}&apikey=PNA7JS5UMRI0PG2D`;
-            const api_dji = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${dji_symbol}&apikey=PNA7JS5UMRI0PG2D`;
-            const api_nasdaq = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${nasdaq_symbol}&apikey=PNA7JS5UMRI0PG2D`;
-            const api_rut = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${rut_symbol}&apikey=PNA7JS5UMRI0PG2D`;
-            const api_btc = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=USD&apikey=PNA7JS5UMRI0PG2D`;
-            const api_eu_usd = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=EUR&to_currency=USD&apikey=PNA7JS5UMRI0PG2D`;
-            const api_gbp_usd = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=GBP&to_currency=USD&apikey=PNA7JS5UMRI0PG2D`;
-            const api_usd_jpy = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=PNA7JS5UMRI0PG2D`;
-            // const api_nkk = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${nkk_symbol}&apikey=PNA7JS5UMRI0PG2D`;
-            // const api_ftse = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ftse_symbol}&apikey=PNA7JS5UMRI0PG2D`;
+           
 
 
             fetch(api_sp)
@@ -145,22 +138,7 @@ const run_app = () => {
                 usdJp.textContent = exgRate.toFixed(2);
             })
 
-            // fetch(api_nkk)
-            // .then(response => {
-            //     return response.json();
-            // })
-            // .then(data => {
-            //     console.log(data);
-            // })
-
-            // fetch(api_ftse)
-            // .then(response => {
-            //     return response.json();
-            // })
-            // .then(data => {
-            //     console.log(data);
-            // })
-
+            
     };
 
     // Burger button dropdown menu
