@@ -29,7 +29,7 @@ class Talk(models.Model):
     
     def get_most_recent_topics(self):
         """Returns a list of the 3 most recent topics."""
-        recent_topics = self.topics.all().order_by('-date_created')[:3]
+        recent_topics = self.topics.all().order_by('-date_created')
         return recent_topics
     
 class FollowTalk(models.Model):
@@ -64,10 +64,6 @@ class Topic(models.Model):
         """Returns the number of posts under this specific topic object."""
         post_count = self.posts.all().count()
         return post_count
-    
-    def get_most_recent(self):
-        """Get recent topics"""
-        return self[:3]
 
 class Post(models.Model):
     """User will create a post under a topic."""

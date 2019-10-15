@@ -61,6 +61,7 @@ const run_app = () => {
             rut_thicker = "RUT",
             nkk_thicker = "NIK";
             
+<<<<<<< Updated upstream
                    
            
 
@@ -139,6 +140,45 @@ const run_app = () => {
             })
 
             
+=======
+            for ([ticker, index] of indexes_entry) {
+                try {
+                    const AV_INDEX_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
+                    fetch(AV_INDEX_BASE_URL)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        let openPrice = +data["Global Quote"]["05. price"];
+                        index.textContent = openPrice.toFixed(2);
+                    })
+                } catch (error) {
+                    index.textContent = 'Not Available';
+                }
+            };
+        })();
+
+        (get_currency = () => {
+            let currencies_entry = Object.entries(Currencies);
+            for ([ticker, index] of currencies_entry) {
+                try {
+                    const AV_CURRENCY_BASE_URL = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${ticker.slice(0,3)}&to_currency=${ticker.slice(-3,)}&apikey=${API_KEY_AV}`;
+                    fetch(AV_CURRENCY_BASE_URL)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        let exgRate = +data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+                        index.textContent = exgRate.toFixed(2);
+                    })
+                } catch (error) {
+                    index.textContent = 'Not Available';
+                }
+                
+            };
+        })();
+        
+>>>>>>> Stashed changes
     };
 
     // Burger button dropdown menu
