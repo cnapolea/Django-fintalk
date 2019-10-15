@@ -19,7 +19,7 @@ class IndexListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['talks'] = Talk.objects.all()[:3]
+        context['talks'] = Talk.objects.all()
         context['follow_talks'] = FollowTalk.objects.all()
         return context
 
@@ -27,21 +27,14 @@ def talkRequest(request):
     """Takes a user request to find a talk and it returns a json object
     with talk names if the match exists or it returns None as json object"""
 
-    user_input = request.GET.get('talk-name-input', None)
+    user_input = request.GET.get('talk-name-input')
     if not user_input:
-        data = {'Matched Talks': None}
+        data = {'matchedTalks': None}
         return JsonResponse(data)
     else:     
-        talks = Talk.objects.filter(name__istartswith=f'{user_input}')
-        
-        if talks:
-            talk_names = [x.name for x in talks]
-            
-            if len(talk_names) >= 6:
-                data = {'matchedTalks': talk_names}
-            else:
-                data = {'matchedTalks': talk_names}
-
+        talks = Talk.objects.filter(name__icontains=f'{user_input}').values_list('name', flat=True)
+        if talks:        
+            data = {'matchedTalks': list(talks)}
             return JsonResponse(data)
         
         else:
