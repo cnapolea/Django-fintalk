@@ -40,116 +40,41 @@ const run_app = () => {
     
     const apiGenerator = () => {
         //Api of stokes
-        const API_KEY_QL = 'yL75LomZDucQi96U23Ln',
-            API_KEY_AV = 'PNA7JS5UMRI0PG2D';
-
-        const QL_COMMODITY_URL = `https://www.quandl.com/api/v3/datasets/ODA/PALLFNF_INDEX.json?api_key=${API_KEY_QL}`;
-        const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY_AV}`;
-
         const sp = document.querySelector('#sp'), 
             dji = document.querySelector('#dji'),
-            ndaq = document.querySelector('#ndaq'), 
-            rsl = document.querySelector('#rsl'),
-            btc = document.querySelector('#btc'), 
+            ndaq = document.querySelector('#ndaq'),  
             euUsd = document.querySelector('#eu-usd'), 
             gbpUsd = document.querySelector('#gbp-usd'), 
-            usdJp = document.querySelector('#usd-jp');
-
-        let sp_thicker= "SPX",
-            dji_thicker = "DJIA",
-            nasdaq_thicker = "COMP",
-            rut_thicker = "RUT",
-            nkk_thicker = "NIK";
+            usdJp = document.querySelector('#usd-jp'),
+            btc = document.querySelector('#btc');
             
-<<<<<<< Updated upstream
-                   
-           
+        const API_KEY_AV = 'PNA7JS5UMRI0PG2D';
 
+        const Indexes = {
+            "SPX": sp,
+            "DJIA": dji,
+            "COMP": ndaq,
+        };
+        
+        const Currencies = {
+            "EURUSD": euUsd,
+            "GBPUSD": gbpUsd,
+            "USDJPY": usdJp,
+            "BTCUSD":btc,
+        };
 
-            fetch(api_sp)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let openPrice = +data["Global Quote"]['02. open'];
-                sp.textContent = openPrice.toFixed(2);
-            })
-
-            fetch(api_dji)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let openPrice = +data["Global Quote"]['02. open'];
-                dji.textContent = openPrice.toFixed(2);
-            })
-
-            fetch(api_nasdaq)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let openPrice = +data["Global Quote"]['02. open'];
-                ndaq.textContent = openPrice.toFixed(2);
-            })
-
-            fetch(api_rut)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let openPrice = +data["Global Quote"]['02. open'];
-                rsl.textContent = openPrice.toFixed(2);
-            })
-
-            fetch(api_btc)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let exgRate = +data["Realtime Currency Exchange Rate"]['5. Exchange Rate'];
-                btc.textContent = exgRate.toFixed(2);
-            })
-
-            fetch(api_eu_usd)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let exgRate = +data["Realtime Currency Exchange Rate"]['5. Exchange Rate'];
-                euUsd.textContent = exgRate.toFixed(2);
-            })
-
-            fetch(api_gbp_usd)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                let exgRate = +data["Realtime Currency Exchange Rate"]['5. Exchange Rate'];
-                gbpUsd.textContent = exgRate.toFixed(2);
-            })
-
-            fetch(api_usd_jpy)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data)
-                let exgRate = +data["Realtime Currency Exchange Rate"]['5. Exchange Rate'];
-                usdJp.textContent = exgRate.toFixed(2);
-            })
-
+        (get_indexes = () => {
+            let indexes_entry = Object.entries(Indexes);
             
-=======
             for ([ticker, index] of indexes_entry) {
                 try {
-                    const AV_INDEX_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
-                    fetch(AV_INDEX_BASE_URL)
+                    const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
+                    fetch(AV_BASE_URL)
                     .then(response => {
                         return response.json();
                     })
                     .then(data => {
-                        let openPrice = +data["Global Quote"]["05. price"];
+                        let openPrice = +data["Global Quote"]['02. open'];
                         index.textContent = openPrice.toFixed(2);
                     })
                 } catch (error) {
@@ -178,7 +103,6 @@ const run_app = () => {
             };
         })();
         
->>>>>>> Stashed changes
     };
 
     // Burger button dropdown menu
@@ -188,7 +112,6 @@ const run_app = () => {
         const authLinks = document.querySelectorAll('.auth-links');
 
         burgerMenu.addEventListener('click', () => {
-            console.log(authLinks[0].classList);
             authLinks[0].classList.toggle('burger-active');
         });
     };
@@ -203,11 +126,11 @@ const run_app = () => {
         });
     };
 
-    // apiGenerator();
+    apiGenerator();
     indexSlider();
     try {
         arrowDropDown();
-    } catch {}
+    } catch(error) {}
     try {
         menuDropDown();
     } catch {}
