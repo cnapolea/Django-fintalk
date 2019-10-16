@@ -271,9 +271,14 @@ body {
     text-decoration: none;
 }
 
+.start-topic {
+    text-decoration: none;
+    color: lightseagreen;
+}
+
 .content-container {
-    margin-left: 45vh;
-    margin-right: 10vh;
+    margin-left: 35vw;
+    margin-right: 10vw;
     margin-top: 16vh;
 }
 
@@ -450,5 +455,87 @@ body {
     }
     .site-name img {
         display: none;
+    }
+}
+
+@media only screen and (max-height: 720px) {
+    .main-container .sidebar-nav {
+        top: 13vh;
+}
+@media only screen and (max-height: 655px) {
+    .main-container .sidebar-nav {
+        top: 13.2vh;
+}
+@media only screen and (max-height: 615px) {
+    .main-container .sidebar-nav {
+        top: 13.3vh;
+}
+
+@media only screen and (max-height: 590px) {
+    .main-container .sidebar-nav {
+        top: 13.4vh;
+}
+@media only screen and (max-height: 580px) {
+    .main-container .sidebar-nav {
+        top: 13.7vh;
+}
+@media only screen and (max-height: 540px) {
+    .main-container .sidebar-nav {
+        top: 14vh;
+}
+@media only screen and (max-height: 510px) {
+    .main-container .sidebar-nav {
+        top: 14.1vh;
+}
+@media only screen and (max-height: 499px) {
+    .main-container .sidebar-nav {
+        top: 14.4vh;
+    }
+    .content-container {
+        margin-top: 20vh;
+    }
+}
+@media only screen and (max-height: 469px) {
+    .main-container .sidebar-nav {
+        top: 14.7vh;
+}
+@media only screen and (max-height: 445px) {
+    .main-container .sidebar-nav {
+        top: 15vh;
+}
+@media only screen and (max-height: 420px) {
+    .main-container .sidebar-nav {
+        top: 15.9vh;
+        font-size: 15px;
+    }
+    .search-bar {
+        height: 7vh;
+    }
+    .nav-links .site-name h3 {
+        color: white;
+        font-size: 18px;
+    }
+    .auth-links li a {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-height: 389px) {
+    .main-container .sidebar-nav {
+        top: 16vh;
+    } 
+}
+@media only screen and (max-height: 365px) {
+    .main-container .sidebar-nav {
+        top: 16.5vh;
+    }
+}
+@media only screen and (max-height: 340px) {
+    .main-container .sidebar-nav {
+        top: 17vh;
+    }
+}
+@media only screen and (max-height: 320px) {
+    .main-container .sidebar-nav {
+        top: 17.6vh;
     }
 }

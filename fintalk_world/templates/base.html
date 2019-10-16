@@ -138,12 +138,12 @@
                             </ul>
                         {% else%}
                             <h3>Your Topics</h3>
-                            <a href="">Start a Topic!</a>
+                            <a class="start-topic" href="">Start a Topic!</a>
                         {% endif%}
 
                     {% else %}
                         <h3>Your Topics</h3>
-                        <a href="{% url 'login' %}">Start a Topic!</a>
+                        <a class="start-topic" href="{% url 'login' %}">Start a Topic!</a>
                     {% endif %}
                 </div>
 

@@ -121,3 +121,59 @@
     margin-left: 6px; 
 }
 
+@media only screen and ( max-width:1939px ) {
+    .content-container {
+        margin-left: 28vw;
+    }
+
+@media only screen and ( max-width:825px ) {
+    .auth-links li a {
+        font-size: 18px;
+    }
+    
+    .search-btn {
+        width: 19%;
+    }
+
+    .content-container {
+        margin-left: 28vw;
+    }
+}
+@media only screen and ( max-width:825px ) {
+    .search-btn {
+        width: 20%;
+    }
+
+}
+@media only screen and ( max-width:741px ) {
+    .search-btn {
+        width: 21%;
+    }
+
+}
+@media only screen and ( max-width:732px ) {
+    .content-container {
+        margin: 13vh 5vw 0 5vw;
+    }
+
+    .search-bar {
+        width: 77vw;
+    }
+
+    .nav-links {
+        top:0;
+    }
+
+    .recent-topics {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-height: 420px) {
+    .search-bar {
+        height: 7vh;
+    }
+    .topic-board{
+        font-size: 15px;
+    }
+}

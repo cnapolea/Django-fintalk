@@ -47,6 +47,8 @@ const run_app = () => {
             gbpUsd = document.querySelector('#gbp-usd'), 
             usdJp = document.querySelector('#usd-jp'),
             btc = document.querySelector('#btc');
+<<<<<<< HEAD
+=======
 
 
         let sp_thicker= "SPX",
@@ -54,6 +56,7 @@ const run_app = () => {
             nasdaq_thicker = "COMP",
             rut_thicker = "RUT",
             nkk_thicker = "NIK";
+>>>>>>> 157c4b7b9ee46f65a76d2a9eb08fd6d2fc2eadc6
             
         const API_KEY_AV = 'PNA7JS5UMRI0PG2D';
 
@@ -73,6 +76,8 @@ const run_app = () => {
         (get_indexes = () => {
             let indexes_entry = Object.entries(Indexes);
             
+<<<<<<< HEAD
+=======
             for ([ticker, index] of indexes_entry) {
                 try {
                     const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
@@ -111,15 +116,16 @@ const run_app = () => {
         })();
             
 
+>>>>>>> 157c4b7b9ee46f65a76d2a9eb08fd6d2fc2eadc6
             for ([ticker, index] of indexes_entry) {
                 try {
-                    const AV_INDEX_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
-                    fetch(AV_INDEX_BASE_URL)
+                    const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
+                    fetch(AV_BASE_URL)
                     .then(response => {
                         return response.json();
                     })
                     .then(data => {
-                        let openPrice = +data["Global Quote"]["05. price"];
+                        let openPrice = +data["Global Quote"]['02. open'];
                         index.textContent = openPrice.toFixed(2);
                     })
                 } catch (error) {
@@ -157,7 +163,6 @@ const run_app = () => {
         const authLinks = document.querySelectorAll('.auth-links');
 
         burgerMenu.addEventListener('click', () => {
-            console.log(authLinks[0].classList);
             authLinks[0].classList.toggle('burger-active');
         });
     };
@@ -176,7 +181,7 @@ const run_app = () => {
     indexSlider();
     try {
         arrowDropDown();
-    } catch {}
+    } catch(error) {}
     try {
         menuDropDown();
     } catch {}
