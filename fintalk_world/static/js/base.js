@@ -47,16 +47,6 @@ const run_app = () => {
             gbpUsd = document.querySelector('#gbp-usd'), 
             usdJp = document.querySelector('#usd-jp'),
             btc = document.querySelector('#btc');
-<<<<<<< HEAD
-=======
-
-
-        let sp_thicker= "SPX",
-            dji_thicker = "DJIA",
-            nasdaq_thicker = "COMP",
-            rut_thicker = "RUT",
-            nkk_thicker = "NIK";
->>>>>>> 157c4b7b9ee46f65a76d2a9eb08fd6d2fc2eadc6
             
         const API_KEY_AV = 'PNA7JS5UMRI0PG2D';
 
@@ -76,47 +66,6 @@ const run_app = () => {
         (get_indexes = () => {
             let indexes_entry = Object.entries(Indexes);
             
-<<<<<<< HEAD
-=======
-            for ([ticker, index] of indexes_entry) {
-                try {
-                    const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
-                    fetch(AV_BASE_URL)
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(data => {
-                        let openPrice = +data["Global Quote"]['02. open'];
-                        index.textContent = openPrice.toFixed(2);
-                    })
-                } catch (error) {
-                    index.textContent = 'Not Available';
-                }
-            };
-        })();
-
-        (get_currency = () => {
-            let currencies_entry = Object.entries(Currencies);
-            for (var [ticker, index] of currencies_entry) {
-                try {
-                    const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;
-                    fetch(AV_BASE_URL)
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(data => {
-                        let exgRate = +data["Realtime Currency Exchange Rate"]['5. Exchange Rate'];
-                        index.textContent = exgRate.toFixed(2);
-                    })
-                } catch (error) {
-                    index.textContent = 'Not Available';
-                }
-                
-            };
-        })();
-            
-
->>>>>>> 157c4b7b9ee46f65a76d2a9eb08fd6d2fc2eadc6
             for ([ticker, index] of indexes_entry) {
                 try {
                     const AV_BASE_URL = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY_AV}`;

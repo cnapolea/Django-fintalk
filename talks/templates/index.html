@@ -26,16 +26,16 @@
             <div class="topic-board">
                 <a href="">
                     <div class="board-header">
-                        <img src="/static/image/user-circle-regular.svg" alt="" class="user-avatar">
-                        <span><p>{{topic.creator.username}} - post at: <span class="talk-name">{{topic.talk.name}}</span></p></span> 
+                        <img src="/static/image/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
+                        <p><span>{{topic.creator.username}} - post at: </span><span class="talk-name">{{topic.talk.name}}</span></p> 
                     </div>
                     <div class="board-body">
-                        {{topic.get_description_short}}
+                        {{topic.description|slice:":150"}}...
                     </div>
                     <div class="board-footer">
                         <div class="comment-section">
                             <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
-                            <span>10k</span>
+                            <span>{{topic.views}}</span>
                         </div>
                             
                         <span class="timestamp">{{topic.date_created|naturaltime}}</span>
@@ -43,7 +43,7 @@
                 </a>
             </div>
         {% endfor %}    
-
+        {% include 'pagination.html' %}
     </div>
     <script src="/static/js/index_app.js"></script>
 

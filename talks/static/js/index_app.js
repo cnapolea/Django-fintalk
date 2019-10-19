@@ -40,7 +40,7 @@ const talkField = () => {
     };
 
     if (window.XMLHttpRequest) {
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
 
         searchBar.addEventListener('input', () => {
             searchResult.innerHTML='';
@@ -61,8 +61,96 @@ const talkField = () => {
         });
     }
 
-    
+};
 
-}
+const homepagePagination = () => {
+    const doc = document.documentElement,
+        recentTopics = document.querySelector('.recent-topics');
 
+    get_next_page_topics = results => {
+        for (index in results) {
+            let result = results[index];
+            let topicBoard = document.createElement('div'),
+                topicLink = document.createElement('a'),
+                boardHeader = document.createElement('div'),
+                userAvatar = document.createElement('img'),
+                headerInfo = document.createElement('p'),
+                username = document.createElement('span'),
+                talkName = document.createElement('span'),
+                boardBody = document.createElement('div'),
+                boardFooter = document.createElement('div'),
+                commentSection = document.createElement('div'),
+                commentIcon = document.createElement('img'),
+                numberOfComments = document.createElement('span'),
+                timeStamp = document.createElement('span');
+
+            
+
+            userAvatar.setAttribute('src', '/static/image/user-circle-regular.svg');
+            commentIcon.setAttribute('src', '/static/image/comment-alt-regular.svg');
+
+            userAvatar.setAttribute('alt', 'User Avatar');
+
+            topicBoard.setAttribute('class','topic-board');
+            boardHeader.setAttribute('class','board-header');
+            userAvatar.setAttribute('class','user-avatar');
+            talkName.setAttribute('class','talk-name');
+            boardBody.setAttribute('class','board-body');
+            boardFooter.setAttribute('class','board-footer');
+            commentSection.setAttribute('class','comment-section');
+            commentIcon.setAttribute('class','cmt-icon');
+            timeStamp.setAttribute('class','timestamp');
+
+            username.textContent =  `${result[1]} - post at: `;
+            talkName.textContent = result[0];
+            boardBody.textContent = `${result[2].slice(0, 150)}...`;
+            numberOfComments.textContent = result[4];
+            timeStamp.textContent = result[3];
+
+            recentTopics.appendChild(topicBoard);
+            
+            topicBoard.appendChild(topicLink);
+            
+            topicLink.appendChild(boardHeader);
+            topicLink.appendChild(boardBody);
+            topicLink.appendChild(boardFooter);
+
+            boardHeader.appendChild(userAvatar);
+            boardHeader.appendChild(headerInfo);
+
+            headerInfo.appendChild(username);
+            headerInfo.appendChild(talkName);
+
+            commentSection.appendChild(commentIcon);
+            commentSection.appendChild(numberOfComments);
+
+            boardFooter.appendChild(commentSection);
+            boardFooter.appendChild(timeStamp);
+        }                            
+    };
+
+    let xhttp = new XMLHttpRequest();
+    let page_num = 2;
+
+    window.addEventListener('scroll', () => {
+        try {
+                if (doc.scrollHeight - doc.scrollTop == doc.clientHeight) {   
+                    xhttp.open('GET', `/ajax/page_request?page=${page_num}`, true);
+                    xhttp.onreadystatechange = () => {
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                            let response = JSON.parse(xhttp.responseText);
+                            let results = response.topics;
+                            get_next_page_topics(results);
+                        }
+                    }
+                    xhttp.send();
+                    page_num ++;
+                }
+            } catch(error) {
+            console.log(error);
+        } 
+    });
+};
+
+homepagePagination();
 talkField();

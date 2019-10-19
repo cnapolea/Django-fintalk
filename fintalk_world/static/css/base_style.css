@@ -288,43 +288,11 @@ body {
 
 @media only screen and ( max-width: 1440px) {
     .main-container .sidebar-nav {
-        height: 88vh;
+        height: 100vh;
+        top: 12.3vh;
     }
 
 }
-@media only screen and ( max-width: 1400px) {
-    .main-container .sidebar-nav {
-        height: 87.5vh;
-    }
-
-}
-
-
-@media only screen and ( max-width: 1280px) {
-    .main-container .sidebar-nav {
-        height: 87.5vh;
-    }
-
-}
-
-@media only screen and ( max-width: 1700px) {
-    .main-container .sidebar-nav {
-        height: 87.5vh;
-    }
-
-}
-@media only screen and ( max-width: 1440px) {
-    .main-container .sidebar-nav {
-        height: 87.5vh;
-    }
-
-}
-
-
-@media only screen and ( max-width: 1024px) {
-    .main-container .sidebar-nav {
-        height: 87.5vh;
-    }
 
 }
 @media only screen and ( max-height: 768px) {
@@ -460,7 +428,7 @@ body {
 
 @media only screen and (max-height: 720px) {
     .main-container .sidebar-nav {
-        top: 13vh;
+        top: 12.8vh;
 }
 @media only screen and (max-height: 655px) {
     .main-container .sidebar-nav {

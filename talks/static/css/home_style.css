@@ -169,6 +169,38 @@
     }
 }
 
+@media only screen and ( max-width:587px ) {
+    .search-btn {
+        width: 29%;
+        font-size: 13px;
+    }
+
+    .recent-topics {
+        font-size: 14px;
+    }
+}
+
+@media only screen and ( max-width:385px ) {
+
+    .search-bar {
+        width: 86vw;
+    }
+
+    .search-btn {
+        width: 31%;
+        font-size: 13px;
+    }
+
+    .recent-topics {
+        font-size: 13px;
+    }
+
+    .burger-menu .line {
+        width: 28px;
+    }
+
+}
+
 @media only screen and (max-height: 420px) {
     .search-bar {
         height: 7vh;
