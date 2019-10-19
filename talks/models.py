@@ -51,14 +51,10 @@ class Topic(models.Model):
     views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return (self.subject[:11] + "...")
+        return (self.subject)
     
     class Meta:
         ordering = ["-date_created"]
-
-    def get_description_short(self):
-        """Returns a summary of the description"""
-        return (self.description[:200] + " ...")
 
     def count_posts(self):
         """Returns the number of posts under this specific topic object."""
