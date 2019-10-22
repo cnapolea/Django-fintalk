@@ -60,6 +60,10 @@ class Topic(models.Model):
         """Returns the number of posts under this specific topic object."""
         post_count = self.posts.all().count()
         return post_count
+    
+    def format_date(self):
+        """This function helps format an unformatted datetime string to [Weekday], [month] [date] at [time]"""
+        return self.date_created.strftime('%a, %b %d at %H:%d')
 
 class Post(models.Model):
     """User will create a post under a topic."""
