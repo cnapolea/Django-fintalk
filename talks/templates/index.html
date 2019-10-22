@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 
+
 {% block stylesheet %}
     <link rel="stylesheet" href="/static/css/home_style.css">
 {% endblock %}
@@ -35,17 +36,15 @@
                     <div class="board-footer">
                         <div class="comment-section">
                             <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
-                            <span>{{topic.views}}</span>
+                            <span>{{topic.posts.count}}</span>
                         </div>
                             
-                        <span class="timestamp">{{topic.date_created|naturaltime}}</span>
+                        <span class="timestamp">{{topic.format_date}}</span>
                     </div>
                 </a>
             </div>
         {% endfor %}    
-        {% include 'pagination.html' %}
     </div>
     <script src="/static/js/index_app.js"></script>
-
 {% endblock %} 
 

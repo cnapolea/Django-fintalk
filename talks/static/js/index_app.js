@@ -63,6 +63,19 @@ const talkField = () => {
 
 };
 
+format_date = (date)  => {
+    /* This function helps format an unformatted datetime string to [Weekday], [month] [date] at [time]*/
+
+    let date_obj = new Date(date);
+    full_date = date_obj.toString(),
+    weekday = full_date.slice(0,3),
+    month_date = full_date.slice(4,10),
+    time = full_date.slice(16,21);
+
+    let formatted_date = `${weekday}, ${month_date} at ${time}`;
+    return formatted_date;
+};
+
 const homepagePagination = () => {
     const doc = document.documentElement,
         recentTopics = document.querySelector('.recent-topics');
@@ -105,7 +118,8 @@ const homepagePagination = () => {
             talkName.textContent = result[0];
             boardBody.textContent = `${result[2].slice(0, 150)}...`;
             numberOfComments.textContent = result[4];
-            timeStamp.textContent = result[3];
+
+            timeStamp.textContent = format_date(result[3]);
 
             recentTopics.appendChild(topicBoard);
             

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     #Third-Party apps
     #  'wtforms.ext.django',
+    # 'compressor',
+    
      
     # My Apps
     'talks',
@@ -130,10 +132,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'fintalk_world/static/',
 ]
+
+# INSTALLED_APPS += (
+#     'compressor',
+#     'compressor_toolkit',
+# )
+
+# STATICFILES_FINDERS = (
+#     'compressor.finders.CompressorFinder',
+# )
+
+# COMPRESS_CSS_FILTERS = [
+#     'compressor.filters.css_default.CssAbsoluteFilter',
+#     'compressor.filters.cssmin.CSSMinFilter',
+#     'compressor.filters.template.TemplateFilter'
+# ]
+# COMPRESS_JS_FILTERS = [
+#     'compressor.filters.jsmin.JSMinFilter',
+# ]
+# COMPRESS_PRECOMPILERS = (
+#     ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
+#     ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
+# )
+# COMPRESS_ENABLED = True
 
 LOGIN_REDIRECT_URL = 'homepage'
 LOGOUT_REDIRECT_URL = 'login'

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../static/css/base_style.css">
+        <link rel="stylesheet" href="{% static '/css/base_style.css' %}">
 
         <script src="https://kit.fontawesome.com/011ed67745.js"></script>
         {% block stylesheet %}{% endblock %}
@@ -21,10 +22,10 @@
         <div class="indexes-bar" id="slider">
                 <div class="slider-btn">
                     <button id="slide-left">
-                        <img src="static/images/arrow-left-solid.svg" alt="">
+                        <img src="{% static 'images/arrow-left-solid.svg' %}" alt="">
                     </button>
                     <button id="slide-right" disabled>
-                        <img src="static/images/arrow-right-solid.svg" alt="">
+                        <img src="{% static 'images/arrow-right-solid.svg' %}" alt="">
                     </button>
                 </div>
                 <div class="main-indexes">
