@@ -294,7 +294,7 @@ body {
 
 }
 
-}
+
 @media only screen and ( max-height: 768px) {
     .main-container .sidebar-nav {
         height: 100vh;

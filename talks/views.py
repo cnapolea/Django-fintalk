@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.views.generic import View, ListView, FormView, UpdateView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.utils import timezone
 from django.urls import reverse
-from django.http import JsonResponse
+
 
 from .models import Talk, FollowTalk, Topic, Post, LikePost, UserFollowUser
 
