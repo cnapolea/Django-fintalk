@@ -23,8 +23,12 @@
 }
 
 .greeting h1 {
-    color: whitesmoke;
     font-size: 2.5em;
+}
+
+.welcome-link {
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 .greeting img {
@@ -83,4 +87,309 @@ div .non-field-errors-box {
 .field-error {
     color: rgb(248, 81, 81);
     margin-bottom: 3px;
+}
+
+@media only screen and (max-width: 925px) {
+    .greeting h1 {
+        font-size: 2.1em;
+    }
+
+    .greeting img {
+        width: 45vw;
+    }
+
+    .user-info {
+        width: 34vw;
+    }
+}
+
+@media only screen and (max-width: 815px) {
+    .greeting h1 {
+        font-size: 1.8em;
+    }
+
+    .greeting img {
+        width: 42vw;
+    }
+    .user-info {
+        width: 37vw;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .greeting h1 {
+        font-size: 1.5em;
+    }
+
+    .greeting img {
+        width: 38vw;
+    }
+    .user-info {
+        width: 44vw;
+        height: 65vh;
+    }
+
+    .auth-box form label {
+        font-size: 1.2em;
+    }
+
+}
+@media only screen and (max-width: 640px) {
+    .greeting h1 {
+        font-size: 1.3em;
+    }
+
+    .greeting img {
+        width: 38vw;
+    }
+    .user-info {
+        width: 44vw;
+        height: 65vh;
+    }
+
+    .auth-box form label {
+        font-size: 1em;
+    }
+
+}
+@media only screen and (max-width: 600px) {
+    .content {
+        flex-direction: column;
+    }
+    .greeting h1 {
+        font-size: 1.5em;
+    }
+    .greeting img {
+        width: 32vw;
+    }
+    .user-info {
+        width: 52vw;
+        height: 65vh;
+        margin-top: -12vh;
+    }
+    .auth-box form label {
+        font-size: 1.3em;
+    }
+    .auth-box form button {
+        width: 12vw;
+    }
+
+}
+@media only screen and (max-width: 470px) {
+
+    .user-info {
+        width: 60vw;
+    }
+    .auth-box input {
+        width: 37vw;
+    }
+  
+}
+@media only screen and (max-width: 370px) {
+    .greeting h1 {
+        font-size: 1.3em;
+    }
+    .greeting img {
+        width: 38vw;
+    }
+    .user-info {
+        width: 70vw;
+    }
+    .auth-box form button {
+        width: 18vw;
+    }
+  
+}
+
+/* Sign up specific styling */
+.sign-up-card {
+    height: 85vh;
+    width: 37vw;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.sign-up-box {
+    padding-top: 3vh;
+}
+
+.sign-up-box form label {
+    font-size: 1em;
+}
+
+.sign-up-greeting h1 {
+    font-size: 2.1em;
+}
+.sign-up-greeting img {
+    width: 45vw;
+}
+
+.sign-up-box form {
+    margin: 0;
+}
+.sign-up-box form button {
+    margin: 8px 0;
+    width: 10vw;
+}
+
+.sign-up-box input {
+    margin: 3px 0;
+    width: 25vw;
+}
+
+
+
+@media only screen and (max-width: 880px) {
+    .sign-up-greeting h1 {
+        font-size: 1.8em;
+    }
+
+    .sign-up-greeting img {
+        width: 40vw;
+    }
+
+    .sign-up-card {
+        width: 40vw;
+    }
+}
+@media only screen and (max-width: 790px) {
+    .sign-up-greeting h1 {
+        font-size: 1.6em;
+    }
+
+    .sign-up-box form label {
+        font-size: .97em;
+    }
+
+    .sign-up-greeting img {
+        width: 40vw;
+    }
+
+    .sign-up-card {
+        width: 40vw;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .sign-up-greeting h1 {
+        font-size: 1.4em;
+    }
+
+    .sign-up-box form label {
+        font-size: .97em;
+    }
+
+    .sign-up-greeting img {
+        width: 40vw;
+    }
+
+    .sign-up-card {
+        width: 40vw;
+        height: 78vh;
+    }
+}
+@media only screen and (max-width: 640px) {
+    .sign-up-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .sign-up-greeting h1 {
+        font-size: 1.7em;
+    }
+
+    .sign-up-box form label {
+        font-size: 1.1em;
+    }
+
+    .sign-up-greeting img {
+        display: none;
+    }
+
+    .sign-up-card {
+        width: 50vw;
+        height: 78vh;
+        margin-top: 5vh;
+    }
+
+    .sign-up-box input {
+        margin: 8px 0;
+        width: 29vw;
+    }
+}
+@media only screen and (max-width: 565px) {
+    .sign-up-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .sign-up-greeting h1 {
+        font-size: 1.4em;
+    }
+
+    .sign-up-box form label {
+        font-size: 1em;
+    }
+
+    .sign-up-greeting img {
+        display: none;
+    }
+
+    .sign-up-card {
+        width: 55vw;
+        height: 78vh;
+        margin-top: 5vh;
+    }
+
+    .sign-up-box input {
+        margin: 8px 0;
+        width: 29vw;
+    }
+
+    .sign-up-box form button {
+        width: 13vw;
+    }
+}
+@media only screen and (max-width: 410px) {
+    .sign-up-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .sign-up-greeting h1 {
+        font-size: 1.3em;
+    }
+
+    .sign-up-box form label {
+        font-size: .97em;
+    }
+
+    .sign-up-greeting img {
+        display: none;
+    }
+
+    .sign-up-card {
+        width: 60vw;
+        height: 78vh;
+        margin-top: 5vh;
+    }
+
+    .sign-up-box input {
+        margin: 8px 0;
+        width: 35vw;
+        height: 3vh;
+    }
+
+    .sign-up-box form button {
+        width: 16vw;
+    }
+}
+
+.field-exists {
+    color: rgb(248, 81, 81);
+    display: none;
+}
+.field-available {
+    color: rgb(84, 177, 115);
+    display: none;   
 }

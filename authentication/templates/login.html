@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +14,7 @@
     <div class="content">
 
         <section class="greeting">
-            <h1>Welcome To Fintalk World</h1>
+            <h1><a href="{% url 'homepage' %}" class="welcome-link">Welcome To Fintalk World</a></h1>
             <img src="/static/images/ftw_logo.svg" alt="fintalk logo">
         </section>
         <section class="user-info">
@@ -41,7 +39,7 @@
                     {% endfor %}
                     <button type="submit">Log In</button><br>
                     <small>Forgot your password, <a href="">click here.</a></small><br>
-                    <small>Not registered? <a href="">Sign up now!</a></small>
+                    <small>Not registered? <a href="{% url 'sign_up' %}">Sign up now!</a></small>
                 </form>
             </div>    
         </section>
