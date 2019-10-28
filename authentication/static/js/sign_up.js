@@ -22,7 +22,7 @@ const checkFieldAvailability = (usernameInputElement, emailInputElement) => {
                     fieldExistsEmail.style.display = 'none';
 
                 } else {
-                    fieldExistsEmail.classList.display = 'block';
+                    fieldExistsEmail.style.display = 'block';
                     fieldAvailableEmail.style.display = 'none';
                 }
             }

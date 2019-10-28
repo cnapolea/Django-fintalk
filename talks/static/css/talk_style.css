@@ -1,0 +1,12 @@
+.info-card {
+    background: whitesmoke;
+    width: 50vw;
+    height: 20vh;
+    margin-bottom: 3vh;
+}
+
+.card-header {
+    background: lightseagreen;
+    width: 100%;
+    height: 15%;
+}
