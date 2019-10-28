@@ -267,8 +267,14 @@ body {
 
 .talk-links ul li a,
 .topic-links ul li a{
-    color: lightgray;
+    color: lightseagreen;
     text-decoration: none;
+    transition: all 1s;
+}
+.talk-links ul li a:hover,
+.topic-links ul li a:hover{
+    color: whitesmoke;
+    
 }
 
 .start-topic {

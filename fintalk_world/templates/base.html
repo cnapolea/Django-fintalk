@@ -120,7 +120,9 @@
                         <h3>Recent Talks</h3>
                         <ul>
                             {% for talk in talks|slice:3 %} 
-                                <li>{{talk}}</li>
+                                <li>
+                                    <a href="{% url 'talk' talk.pk %}" class="side-bar-talks">{{talk}}</a>
+                                </li>
                             {% endfor %}
                             <li><a href="">More Talks </a></li>
                         </ul>

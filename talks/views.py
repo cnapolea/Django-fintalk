@@ -27,8 +27,6 @@ class IndexListView(ListView):
         context['follow_talks'] = FollowTalk.objects.all()
         return context
     
-
-
 def talkRequest(request):
     """Takes a user request to find a talk and it returns a json object
     with talk names if the match exists or it returns None as json object"""
@@ -48,7 +46,7 @@ def talkRequest(request):
             return JsonResponse(data)
 
 def get_page(request):
-    
+    """This gets the list of objects of the next page. Assists in the pagination on scroll"""
     topics_list = Topic.objects.values_list('talk__name', 'creator__username', 'description', 'date_created', 'views')
     paginator = Paginator(topics_list, 4)
 
@@ -60,3 +58,16 @@ def get_page(request):
     except:
         context = {'topics': None}
     return JsonResponse(context)
+
+class TalkListView(ListView):
+    model = Talk
+    template_name = 'talk.html'
+    context_object_name = 'talks'    
+
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        selected_talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
+        context['talk_topics'] = selected_talk.topics.all()
+        return context
+    

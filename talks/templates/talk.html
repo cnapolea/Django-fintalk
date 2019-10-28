@@ -2,56 +2,61 @@
 {% load static %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="/static/css/home_style.css">
+    <link rel="stylesheet" href="{% static 'css/home_style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/talk_style.css'%}">
 {% endblock %}
 
-{% block title%}Homepage - Fintalk{% endblock %}
-
 {% block body %}
-    <div class="search">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <input class="search-bar" type="text" maxlength="200" placeholder="E.g. Cryptocurrency" name='talk-name-input' id="talk-name-input" onclick="this.select();"><br>
-            <div class="possible-talks">
-                <ul class="search-result">
-                </ul>
-            </div>
-            <button class="search-btn">Search Talk</button>
-        </form>
-        
-    </div>
-    <div class="recent-topics">
-        {% for topic in topics %}
-            <div class="topic-board">
-                    <div class="board-header">
+   <section>
+        <div class="info-card">
+            <div class="card-header"></div>        
+            <div class="card-body">
+                <div class="talk-info"></div>
+                <div class="btn-container"></div>
+            </div>        
+        </div>
+   </section>
 
+   <section class="talk-topics">
+        <div class="recent-topics">
+            {% for topic in talk_topics %}
+                <div class="topic-board">
+                    <div class="board-header">
+    
                         <img src="/static/image/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
-                        
+                            
                         <p>
                             <span>{{topic.creator.username}} - post at: </span>
+
                             <span>
                                 <a href="{% url 'talk' topic.talk.pk %}" class="talk-name">{{topic.talk.name}}</a>
                             </span>
                         </p> 
-                        
+                            
                     </div>
+                        
                     <div class="board-body">
+                        
                         <a href="">
                             {{topic.description|slice:":150"}}...
                         </a>
-                        
+                            
                     </div>
                     <div class="board-footer">
+                        
                         <div class="comment-section">
                             <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
-                            <span>{{topic.posts.count}}</span>
-                        </div>
-                            
-                        <span class="timestamp">{{topic.format_date}}</span>
-                    </div>
-            </div>
-        {% endfor %}    
-    </div>
-    <script src="/static/js/index_app.js"></script>
-{% endblock %} 
 
+                            <span>{{topic.posts.count}}</span>
+
+                        </div>
+                                
+                        <span class="timestamp">{{topic.format_date}}</span>
+
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+   </section>
+   
+{% endblock %}
