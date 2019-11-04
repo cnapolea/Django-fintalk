@@ -9,10 +9,20 @@
 {% block body %}
    <section>
         <div class="info-card">
-            <div class="card-header"></div>        
+            <div class="card-header">
+                <p class="talk-name">       
+                    {{selected_talk.name}} Talk
+                </p>
+            </div>
             <div class="card-body">
-                <div class="talk-info"></div>
-                <div class="btn-container"></div>
+                <div class="talk-info">
+                    <p>Number of Topics: {{talk_topics.count}}</p> 
+                    <p>Number of Followers: #</p>
+                </div>
+                <div class="btn-container">
+                    <button><a href="#">Topic</a></button>
+                    <button><a href="#">Follow Talk</a></button>
+                </div>
             </div>        
         </div>
    </section>
