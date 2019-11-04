@@ -69,5 +69,6 @@ class TalkListView(ListView):
         context = super().get_context_data(**kwargs)
         selected_talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
         context['talk_topics'] = selected_talk.topics.all()
+        context['selected_talk'] = selected_talk
         return context
     
