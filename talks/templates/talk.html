@@ -16,11 +16,21 @@
             </div>
             <div class="card-body">
                 <div class="talk-info">
-                    <p>Number of Topics: {{talk_topics.count}}</p> 
-                    <p>Number of Followers: #</p>
+                    
+                    <div class="description">
+                        <p>{{selected_talk.description|slice:100}}</p>
+                    </div>
+
+                    <div class="icons">
+                        <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="followers-icon"> 
+                        <small class="icon-info">#</small>
+                        <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" title="Talk Topics" class="followers-icon"> 
+                        <small class="icon-info">{{talk_topics.count}}</small>
+                    </div>
+
                 </div>
                 <div class="btn-container">
-                    <button><a href="#">Topic</a></button>
+                    <button><a href="#">Create Topic</a></button>
                     <button><a href="#">Follow Talk</a></button>
                 </div>
             </div>        
