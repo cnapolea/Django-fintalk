@@ -35,8 +35,8 @@ class Talk(models.Model):
 class FollowTalk(models.Model):
     """FollowTalk is a many-to-many middle table, which allows users to follow as many talks they wish and at the same time, a talk can be followed by n users."""
 
-    user = models.ForeignKey(User, related_name='follows_talk', on_delete=models.CASCADE)
-    talk = models.ManyToManyField(Talk, related_name='followers')
+    user = models.ForeignKey(User, related_name='follows_talk', on_delete=models.CASCADE, null=True)
+    talk = models.ForeignKey(Talk, related_name='followers', on_delete=models.CASCADE, null=True)
 
 class Topic(models.Model):
     """User will be able to create a topic under a talk. Topic needs to be connected to Talk."""
@@ -80,9 +80,9 @@ class Post(models.Model):
 class LikePost(models.Model):
     """Middle table (many-to-many relationship) between a user and a topic."""
 
-    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
-    post = models.ManyToManyField(Post, related_name='likes')
+    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE, null=True)
+    post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE, null=True)
 
 class UserFollowUser(models.Model):
-    follower = models.ForeignKey(User, related_name='follows', on_delete=models.CASCADE)
-    being_followed = models.ManyToManyField(User, related_name='is_followed_by')
+    follower = models.ForeignKey(User, related_name='follows', on_delete=models.CASCADE, null=True)
+    being_followed = models.ForeignKey(User, related_name='is_followed_by', on_delete=models.CASCADE, null=True)

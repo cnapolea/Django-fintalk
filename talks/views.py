@@ -1,11 +1,11 @@
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.views.generic import View, ListView, FormView, UpdateView
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.utils import timezone
 from django.urls import reverse
 
@@ -67,8 +67,47 @@ class TalkListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+       
         selected_talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
+
         context['talk_topics'] = selected_talk.topics.all()
+
         context['selected_talk'] = selected_talk
+
+        user = self.request.user
+
+        if user.is_authenticated:
+            followTalkObj = FollowTalk.objects.filter(user=user, talk=selected_talk)
+
+            if followTalkObj:
+                context['userFollows'] = True
+
+            else:
+                context['userFollows'] = False
+
         return context
+
+@login_required(login_url='/auth/login/')
+def followTalkManager(request, talk_pk):
+    """This functions view receives a request to with the talk's pk and enables logged in users to follow or unfollow a talk."""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
     
+    if current_user.is_authenticated:
+        userObj = User.objects.get(pk=current_user.id)
+        talkObj = Talk.objects.get(pk=talk_pk)
+
+        followTalkObj = FollowTalk.objects.filter(user = userObj, talk = talkObj)
+
+        if followTalkObj:
+            followTalkObj.delete()
+            
+
+        else:
+            followTalkObj = FollowTalk.objects.create(user=userObj, talk = talkObj)
+
+        return redirect(url)
+
+    else:
+        return redirect(reverse('signIn'))

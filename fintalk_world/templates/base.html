@@ -97,7 +97,7 @@
 
                     <ul class="auth-links">
                         <li><a href="{% url 'sign_up' %}">Sign Up</a></li>        
-                        <li class="login"><a href="{% url 'login' %}">Log In</a></li>        
+                        <li class="signIn"><a href="{% url 'signIn' %}">Log In</a></li>        
                     </ul>
                 {% endif %}
 
@@ -146,7 +146,7 @@
 
                     {% else %}
                         <h3>Your Topics</h3>
-                        <a class="start-topic" href="{% url 'login' %}">Start a Topic!</a>
+                        <a class="start-topic" href="{% url 'signIn' %}">Start a Topic!</a>
                     {% endif %}
                 </div>
 
