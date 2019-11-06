@@ -7,34 +7,43 @@
 {% endblock %}
 
 {% block body %}
-   <section>
-        <div class="info-card">
-            <div class="card-header">
-                <p class="talk-name">       
-                    {{selected_talk.name}} Talk
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="talk-info">
-                    
-                    <div class="description">
-                        <p>{{selected_talk.description|slice:100}}</p>
-                    </div>
-
-                    <div class="icons">
-                        <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="followers-icon"> 
-                        <small class="icon-info">#</small>
-                        <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" title="Talk Topics" class="followers-icon"> 
-                        <small class="icon-info">{{talk_topics.count}}</small>
-                    </div>
-
-                </div>
-                <div class="btn-container">
-                    <button><a href="#">Create Topic</a></button>
-                    <button><a href="#">Follow Talk</a></button>
-                </div>
-            </div>        
+   <section class="info-card">
+        <div class="card-header">
+            <p class="talk-name">       
+                {{selected_talk.name}} Talk
+            </p>
         </div>
+        <div class="card-body">
+            <div class="talk-info">
+                
+                <div class="description">
+                    <p>{{selected_talk.description|slice:100}}</p>
+                </div>
+
+                <div class="icons">
+                    <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="followers-icon"> 
+                    <small class="icon-info">{{selected_talk.followers.all.count}}</small>
+                    <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" title="Talk Topics" class="followers-icon"> 
+                    <small class="icon-info">{{talk_topics.count}}</small>
+                </div>
+
+            </div>
+            <div class="btn-container">
+                <button><a href="#">Create Topic</a></button>
+
+                {% if userFollows %}
+                    <button>
+                        <a href="{% url 'followTalk' selected_talk.pk %}">Unfollow Talk</a>
+                    </button>
+                    
+                {% else %}
+                    <button>
+                        <a href="{% url 'followTalk' selected_talk.pk %}">Follow Talk</a>
+                    </button>
+                {% endif %}
+
+            </div>
+        </div>        
    </section>
 
    <section class="talk-topics">
