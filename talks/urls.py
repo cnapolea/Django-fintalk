@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import IndexListView, TalkListView,talkRequest, get_page, followTalkManager
+from .views import IndexListView, TalkListView,talkRequest, get_page, followTalkManager, PostListView
 
 urlpatterns = [
     path('', IndexListView.as_view(), name = 'homepage'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('talk/follow_talk/<int:talk_pk>/', followTalkManager, name = 'followTalk'),
     path('ajax/talk_request/', talkRequest, name = 'talk_request'),
     path('ajax/page_request/', get_page, name = 'get_page'),
+    path('talk/<int:talk_pk>/post/<int:post_pk>/', PostListView.as_view(), name = 'post_view'),
 ]

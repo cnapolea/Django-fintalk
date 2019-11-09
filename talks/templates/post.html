@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/post_style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/talk_style.css' %}"> 
+
+{% endblock %}
+
+{% block body %}
+    <div class="talk-info-bar">
+        <div class="post-talk-name">
+            {{talk.name}} Talk
+        </div>
+        <div class="post-talk-icon">
+            <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="talk-info-icon"> 
+            <small class="talk-post-info">{{talk.followers.all.count}}</small>
+            <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" 
+            title="Talk Topics" class="talk-info-icon"> 
+            <small class="icon-info talk-post-info">{{talk.posts.count}}</small>
+        </div>    
+        <div class="post-talk-btn">
+                <button><a href="#">Create Post</a></button>
+
+                {% if userFollows %}
+                    <button>
+                        <a href="{% url 'followTalk' talk.pk %}">Unfollow Talk</a>
+                    </button>
+                    
+                {% else %}
+                    <button>
+                        <a href="{% url 'followTalk' talk.pk %}">Follow Talk</a>
+                    </button>
+                {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

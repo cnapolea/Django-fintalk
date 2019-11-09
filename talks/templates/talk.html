@@ -7,6 +7,17 @@
 {% endblock %}
 
 {% block body %}
+    <div class="search">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input class="search-bar" type="text" maxlength="200" placeholder="E.g. Cryptocurrency" name='talk-name-input' id="talk-name-input" onclick="this.select();"><br>
+            <div class="possible-talks">
+                <ul class="search-result">
+                </ul>
+            </div>
+            <button class="search-btn">Search Talk</button>
+        </form>
+    </div>
    <section class="info-card">
         <div class="card-header">
             <p class="talk-name">       
@@ -24,12 +35,12 @@
                     <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="followers-icon"> 
                     <small class="icon-info">{{selected_talk.followers.all.count}}</small>
                     <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" title="Talk Topics" class="followers-icon"> 
-                    <small class="icon-info">{{talk_topics.count}}</small>
+                    <small class="icon-info">{{talk_posts.count}}</small>
                 </div>
 
             </div>
             <div class="btn-container">
-                <button><a href="#">Create Topic</a></button>
+                <button><a href="#">Create Post</a></button>
 
                 {% if userFollows %}
                     <button>
@@ -48,17 +59,17 @@
 
    <section class="talk-topics">
         <div class="recent-topics">
-            {% for topic in talk_topics %}
+            {% for post in talk_posts %}
                 <div class="topic-board">
                     <div class="board-header">
     
                         <img src="/static/image/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
                             
                         <p>
-                            <span>{{topic.creator.username}} - post at: </span>
+                            <span>{{post.creator.username}} - post at: </span>
 
                             <span>
-                                <a href="{% url 'talk' topic.talk.pk %}" class="talk-name">{{topic.talk.name}}</a>
+                                <a href="{% url 'talk' post.talk.pk %}" class="talk-name">{{post.talk.name}}</a>
                             </span>
                         </p> 
                             
@@ -66,8 +77,12 @@
                         
                     <div class="board-body">
                         
-                        <a href="">
-                            {{topic.description|slice:":150"}}...
+                        <a href="{% url 'post_view' selected_talk.pk post.pk %}">
+                            {% if post.content.count > 150 %}
+                                {{post.content|slice:":150"}}...
+                            {% else %}
+                                {{post.content}}
+                            {% endif %}
                         </a>
                             
                     </div>
@@ -76,16 +91,16 @@
                         <div class="comment-section">
                             <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
 
-                            <span>{{topic.posts.count}}</span>
+                            <span>{{post.replies.count}}</span>
 
                         </div>
                                 
-                        <span class="timestamp">{{topic.format_date}}</span>
+                        <span class="timestamp">{{post.format_date}}</span>
 
                     </div>
                 </div>
             {% endfor %}    
         </div>
    </section>
-   
+   <script src="{% static 'js/index_app.js' %}"></script>
 {% endblock %}

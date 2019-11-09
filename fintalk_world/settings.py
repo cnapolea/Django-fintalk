@@ -87,12 +87,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fintalk',
-        'USER': 'fintalk_admin_1',
-        'PASSWORD': 'MvxUZJatRGufCtbadRX7jW6utJ7qfbTq69q',
+        'USER': 'cristianojorgeapple0994',
+        'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
 
-    }
+    },
 }
 
 

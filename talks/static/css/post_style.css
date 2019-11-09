@@ -1,0 +1,49 @@
+.talk-info-bar {
+    background: whitesmoke;
+    width: 80vw;
+    height: 7vh;
+    margin-left: -15vw;
+    margin-top: -3vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1 1;
+}
+
+.post-talk-name {
+    font-weight: bolder;
+}
+
+.post-talk-icon {
+    display: flex;
+    align-items: center;
+}
+
+.talk-info-icon {
+    height: 20px;
+    margin-right: 4px;
+}
+
+.talk-post-info {
+    margin-right: 6px !important;
+}
+
+.talk-info-bar button{
+    background: lightseagreen;
+    height: 25%;
+    width: 65%;
+    border-radius: 4%;
+    border: lightseagreen;
+    transition: all .4s;
+    cursor: pointer;
+}
+.talk-info-bar button a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.05em;
+    font-weight: 600;
+}
+
+.talk-info-bar button:hover {
+    box-shadow: 0px 0px 5px 0px lightseagreen;
+}

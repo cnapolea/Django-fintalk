@@ -10,14 +10,14 @@ from django.utils import timezone
 from django.urls import reverse
 
 
-from .models import Talk, FollowTalk, Topic, Post, LikePost, UserFollowUser
+from .models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser
 
 class IndexListView(ListView):
     """Homepage view. This will receive a list of talk (most populars) 
     which will be displayed to users"""
 
-    model = Topic
-    context_object_name = 'topics'
+    model = Post
+    context_object_name = 'posts'
     template_name = 'index.html'
     paginate_by = 4
     
@@ -47,16 +47,17 @@ def talkRequest(request):
 
 def get_page(request):
     """This gets the list of objects of the next page. Assists in the pagination on scroll"""
-    topics_list = Topic.objects.values_list('talk__name', 'creator__username', 'description', 'date_created', 'views')
-    paginator = Paginator(topics_list, 4)
+
+    posts_list = Post.objects.values_list('talk__name', 'creator__username', 'content', 'date_created')
+    paginator = Paginator(posts_list, 4)
 
     page_num = request.GET.get('page')
     
     try:
         page = paginator.page(page_num)
-        context = {'topics':list(page.object_list)}
+        context = {'posts':list(page.object_list)}
     except:
-        context = {'topics': None}
+        context = {'posts': None}
     return JsonResponse(context)
 
 class TalkListView(ListView):
@@ -70,7 +71,7 @@ class TalkListView(ListView):
        
         selected_talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
 
-        context['talk_topics'] = selected_talk.topics.all()
+        context['talk_posts'] = selected_talk.posts.all()
 
         context['selected_talk'] = selected_talk
 
@@ -111,3 +112,20 @@ def followTalkManager(request, talk_pk):
 
     else:
         return redirect(reverse('signIn'))
+
+class PostListView(ListView):
+
+    model = Post
+    template_name = 'post.html'
+
+    def get_queryset(self):
+        queryset = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        selected_post = Post.objects.get(pk=self.kwargs['post_pk'])
+        context['replies'] = selected_post.replies.all()
+        context['talks'] = Talk.objects.all()
+        context['talk'] = Talk.objects.get(pk=self.kwargs['talk_pk'])
+        return context

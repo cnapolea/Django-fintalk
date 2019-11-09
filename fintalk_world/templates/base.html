@@ -113,7 +113,7 @@
                             <li>{% block recent_talk_1 %}Talk Name 1{% endblock%}</li>
                             <li>{% block recent_talk_2 %}Talk Name 2{% endblock%}</li>
                             <li>{% block recent_talk_3 %}Talk Name 3{% endblock%}</li>
-                            <li><a href="">More Talks </a></li>
+                            <li><a href="">More Talks</a></li>
                         </ul>
                     {% else %}
 
@@ -124,15 +124,15 @@
                                     <a href="{% url 'talk' talk.pk %}" class="side-bar-talks">{{talk}}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="">More Talks </a></li>
+                            <li><a href="">More Talks</a></li>
                         </ul>
 
                     {% endif %}
                 </div>
                 <div class="topic-links">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.topics.count >= 3 %}
-                            <h3>Your Topics</h3>
+                        {% if request.user.posts.count >= 3 %}
+                            <h3>Favorite Talks</h3>
                             <ul>
                                 {% for topic in request.user.topics.all|slice:":3" %}
                                     <li>{{topic}}</li>
@@ -140,13 +140,13 @@
                                 <li><a href="">More Talks </a></
                             </ul>
                         {% else%}
-                            <h3>Your Topics</h3>
-                            <a class="start-topic" href="">Start a Topic!</a>
+                            <h3>Favorite Talks</h3>
+                            <a class="start-topic" href="">Explore Our Talks!</a>
                         {% endif%}
 
                     {% else %}
                         <h3>Your Topics</h3>
-                        <a class="start-topic" href="{% url 'signIn' %}">Start a Topic!</a>
+                        <a class="start-topic" href="{% url 'signIn' %}">Explore Our Talks!</a>
                     {% endif %}
                 </div>
 
