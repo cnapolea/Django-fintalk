@@ -124,8 +124,19 @@ class PostListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        selected_post = Post.objects.get(pk=self.kwargs['post_pk'])
-        context['replies'] = selected_post.replies.all()
+        post = Post.objects.get(pk=self.kwargs['post_pk'])
+        context['post'] = post
+        context['replies'] = post.replies.all()
         context['talks'] = Talk.objects.all()
-        context['talk'] = Talk.objects.get(pk=self.kwargs['talk_pk'])
+        user = self.request.user
+
+        if user.is_authenticated:
+            followTalkObj = FollowTalk.objects.filter(user=user, talk=Talk.objects.get(pk=self.kwargs['talk_pk']))
+
+            if followTalkObj:
+                context['userFollows'] = True
+
+            else:
+                context['userFollows'] = False
+
         return context
