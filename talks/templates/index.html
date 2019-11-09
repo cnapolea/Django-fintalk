@@ -21,37 +21,43 @@
         
     </div>
     <div class="recent-topics">
-        {% for topic in topics %}
+        {% for post in posts %}
             <div class="topic-board">
                     <div class="board-header">
 
                         <img src="/static/image/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
                         
                         <p>
-                            <span>{{topic.creator.username}} - post at: </span>
+                            <span>{{post.creator.username}} - post at: </span>
                             <span>
-                                <a href="{% url 'talk' topic.talk.pk %}" class="talk-name">{{topic.talk.name}}</a>
+                                <a href="{% url 'talk' post.talk.pk %}" class="talk-name">{{post.talk.name}}</a>
                             </span>
                         </p> 
                         
                     </div>
                     <div class="board-body">
-                        <a href="">
-                            {{topic.description|slice:":150"}}...
+                        <a href="{% url 'post_view' post.talk.pk post.pk %}">
+                            {% if post.content.count > 150 %}
+                                {{post.content|slice:":150"}}...
+                            {% else %}
+                                {{post.content}}
+                            {% endif %}
                         </a>
                         
                     </div>
                     <div class="board-footer">
                         <div class="comment-section">
-                            <img class="cmt-icon" src="/static/image/comment-alt-regular.svg" alt="">
-                            <span>{{topic.posts.count}}</span>
+                            <small class="post-text s">replies</small>
+                            <small class="post-text s">{{post.replies.count}}</small>
+                            <small class="post-text s">likes</small>
+                            <small class="post-text s">{{post.user_post_likes.count}}</small>
                         </div>
                             
-                        <span class="timestamp">{{topic.format_date}}</span>
+                        <span class="timestamp">{{post.format_date}}</span>
                     </div>
             </div>
         {% endfor %}    
     </div>
-    <script src="/static/js/index_app.js"></script>
+    <script src="{% static 'js/index_app.js' %}"></script>   
 {% endblock %} 
 

@@ -153,7 +153,7 @@ const homepagePagination = () => {
                     xhttp.onreadystatechange = () => {
                         if (xhttp.readyState == 4 && xhttp.status == 200) {
                             let response = JSON.parse(xhttp.responseText);
-                            let results = response.topics;
+                            let results = response.posts;
                             get_next_page_topics(results);
                         }
                     }
