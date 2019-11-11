@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpRequest, JsonResponse
-from django.views.generic import View, ListView, FormView, UpdateView
+from django.views.generic import View, ListView, FormView, UpdateView, View
 from django.shortcuts import redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -11,6 +11,7 @@ from django.urls import reverse
 
 
 from .models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser
+from .forms import CommentForm
 
 class IndexListView(ListView):
     """Homepage view. This will receive a list of talk (most populars) 
@@ -113,22 +114,20 @@ def followTalkManager(request, talk_pk):
     else:
         return redirect(reverse('signIn'))
 
-class PostListView(ListView):
-
-    model = Post
+class PostListView(FormView):
+    
+    form_class = CommentForm
     template_name = 'post.html'
-
-    def get_queryset(self):
-        queryset = get_object_or_404(Post, pk=self.kwargs['post_pk'])
-        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = Post.objects.get(pk=self.kwargs['post_pk'])
+        user = self.request.user
+
         context['post'] = post
         context['replies'] = post.replies.all()
         context['talks'] = Talk.objects.all()
-        user = self.request.user
+      
 
         if user.is_authenticated:
             followTalkObj = FollowTalk.objects.filter(user=user, talk=Talk.objects.get(pk=self.kwargs['talk_pk']))
@@ -140,3 +139,12 @@ class PostListView(ListView):
                 context['userFollows'] = False
 
         return context
+    
+    def form_valid(self, form):
+        post = Post.objects.get(pk=self.kwargs['post_pk'])
+        user = self.request.user
+        reply = form.cleaned_data['reply']
+        new_reply = Reply.objects.create(post=post, creator=user, reply=reply)
+
+        return redirect(self.request.META.get('HTTP_REFERER'))    
+        
