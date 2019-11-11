@@ -147,4 +147,28 @@ class PostListView(FormView):
         new_reply = Reply.objects.create(post=post, creator=user, reply=reply)
 
         return redirect(self.request.META.get('HTTP_REFERER'))    
-        
+
+@login_required(login_url='/auth/login/')
+def likePost(request, post_pk):
+    """This functions view receives a request with the post's pk and enables logged in users to like or unlike a post."""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        userObj = User.objects.get(pk=current_user.id)
+        postObj = Post.objects.get(pk=post_pk)
+
+        likePostObj = LikePost.objects.filter(user = userObj, post = postObj)
+
+        if likePostObj:
+            likePostObj.delete()
+            
+
+        else:
+            likePostObj = LikePost.objects.create(user=userObj, post = postObj)
+
+        return redirect(url)
+
+    else:
+        return redirect(reverse('signIn'))        

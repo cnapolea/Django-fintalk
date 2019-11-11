@@ -46,7 +46,11 @@
         <div class="post-body">
             <p class="post-text m">
                 {{post.content}}
+                
             </p>
+            <a href="{% url 'like_post' post.pk %}">
+                <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+            </a>
         </div>
 
         <div class="post-footer">

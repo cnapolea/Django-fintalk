@@ -136,3 +136,13 @@
     text-decoration: underline;
     color: lightseagreen;
 }
+
+.post-body {
+    display: flex;
+    align-items: center;
+}
+
+.post-body a .post-footer-icon {
+    height: 18px;
+    margin-left: 4px;
+}

@@ -63,7 +63,7 @@
                         
                     </div>
                     <div class="board-body">
-                        <a href="{% url 'post_view' post.talk.pk post.pk request.user.pk %}">
+                        <a href="{% url 'post_view' post.talk.pk post.pk%}">
                             {% if post.content.count > 150 %}
                                 {{post.content|slice:":150"}}...
                             {% else %}
@@ -82,10 +82,10 @@
                         <span class="timestamp">{{post.format_date}}</span>
                     </div>
                     <div class="post-comment-icons">
-                        <a href="{% url 'post_view' post.talk.pk post.pk% }">
+                        <a href="{% url 'post_view' post.talk.pk post.pk %}">
                             <img src="{% static 'image/comment-alt-regular.svg' %}" alt="chat bubble" class="post-footer-icon" title="add comment">
                         </a>
-                        <a href="">
+                        <a href="{% url 'like_post' post.pk %}">
                             <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
                         </a>
                         
