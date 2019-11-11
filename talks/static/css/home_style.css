@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    
 }
 
 .search {
@@ -113,7 +113,7 @@
 .board-footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 2vh;
+    margin: 2% 0;
     align-items: center;
 }
 
@@ -124,6 +124,19 @@
 
 .timestamp {
     margin-left: 6px; 
+}
+
+.post-footer-icon {
+    height: 18px;
+}
+
+.post-comment-icons {
+    display: flex;
+    align-items: center;
+}
+
+.post-comment-icons a:last-child {
+    margin-left: 2%;    
 }
 
 @media only screen and ( max-width:1939px ) {

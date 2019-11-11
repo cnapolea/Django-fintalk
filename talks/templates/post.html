@@ -46,14 +46,18 @@
         <div class="post-body">
             <p class="post-text m">
                 {{post.content}}
+                
             </p>
+            <a href="{% url 'like_post' post.pk %}">
+                <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+            </a>
         </div>
 
         <div class="post-footer">
             <div class="footer-links">
                 <small class="post-text s">replies</small>
                 <small class="post-text s">{{post.replies.count}}</small>
-                <small class="post-text s">likes</small>
+                <small class="post-text s">value</small>
                 <small class="post-text s">{{post.user_post_likes.count}}</small>
             </div>
             <div class="post-date">
@@ -61,10 +65,19 @@
             </div>
         </div>
         <div class="comment-text-box">
-            <form action="" method="post">
-                <input type="textarea" name="post-comment" placeholder="Start talking about this post!" class="content-area"">
-                <input type="button" value="Comment" class="content-submit-btn">
+            {% if request.user.is_authenticated %}
+            <form method="POST">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    {{field}}
+                {% endfor %}
+
+                <input type="submit" value="Comment" class="content-submit-btn">
             </form>
+            {% else %}
+            <p class="not-logged-text">Start talking about this post, just <a href="{% url 'signIn' %}">log in</a> or <a href="{% url 'sign_up' %}">sign up</a>.</p>
+            {%endif%}
         </div>
     </div>
 {% endblock %}
