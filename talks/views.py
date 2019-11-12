@@ -171,4 +171,30 @@ def likePost(request, post_pk):
         return redirect(url)
 
     else:
-        return redirect(reverse('signIn'))        
+        return redirect(reverse('signIn'))
+
+@login_required(login_url='/auth/login/')
+def likeReply(request, reply_pk):
+    """This functions view receives a request with the reply's pk and enables logged in users to like or unlike a reply."""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        userObj = User.objects.get(pk=current_user.id)
+        replyObj = Reply.objects.get(pk=reply_pk)
+
+        likeReplyObj = LikeReply.objects.filter(user = userObj, reply = replyObj)
+
+        if likeReplyObj:
+            likeReplyObj.delete()
+            
+
+        else:
+            likeReplyObj = LikeReply.objects.create(user=userObj, reply = replyObj)
+
+        return redirect(url)
+
+    else:
+        return redirect(reverse('signIn'))
+
