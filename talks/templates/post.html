@@ -80,4 +80,31 @@
             {%endif%}
         </div>
     </div>
+
+    {% for reply in post.replies.all|slice:'10' %}
+        <div class="talk-post reply">
+            <div class="post-header">
+                <div class="img-username">    
+                    <img src="{% static 'image/user-circle-regular.svg' %}" alt="" class="user-circle-img">
+                    <p class="post-text">{{reply.creator.username}}</p>
+                </div>
+                <div class="date">
+                    <small class="post-text">{{post.format_date}}</small>          
+                </div>
+                </div>
+                
+            <div class="post-body">
+                <p class="post-text m">
+                    {{reply.reply}}
+                </p>
+            </div>
+            <div class="post-footer">
+                <div class="footer-links">
+                    <small class="post-text s"><a class="like-link" href="">Like</a></small>
+                    <small class="post-text s">{{reply.user_reply_likes.count}}</small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
