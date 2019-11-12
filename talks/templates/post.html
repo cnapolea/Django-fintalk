@@ -100,9 +100,13 @@
             </div>
             <div class="post-footer">
                 <div class="footer-links">
-                    <small class="post-text s"><a class="like-link" href="">Like</a></small>
+                    <small class="post-text s" title="Like title"><a class="like-link" href="{% url 'like_reply' reply.pk %}">Likes</a></small>
                     <small class="post-text s">{{reply.user_reply_likes.count}}</small>
                 </div>
+
+                {% if reply.creator == request.user %}
+                    <img src="{% static 'image/trash-alt-solid.svg' %}" alt="" class="trash-icon">
+                {%endif%}
             </div>
         </div>
     {% endfor %}
