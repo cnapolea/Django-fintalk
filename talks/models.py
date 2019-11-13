@@ -79,7 +79,7 @@ class FavoriteTalk(models.Model):
     """Middle table (many-to-many relationship) between a user and a talk."""
 
     user = models.ForeignKey(User, related_name='favorite_talks', on_delete=models.CASCADE)
-    talk = models.ForeignKey(Post, related_name='user_favorites', on_delete=models.CASCADE)
+    talk = models.ForeignKey(Talk, related_name='user_favorites', on_delete=models.CASCADE)
 
 class LikePost(models.Model):
     """Middle table (many-to-many relationship) between a user and a Post."""

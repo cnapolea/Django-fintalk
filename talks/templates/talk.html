@@ -25,6 +25,16 @@
                     <small class="icon-info">{{selected_talk.followers.all.count}}</small>
                     <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" title="Talk Topics" class="followers-icon"> 
                     <small class="icon-info">{{talk_posts.count}}</small>
+
+                    {% if not is_favorite %}
+                        <a href="{% url 'makeFavorite' selected_talk.pk %}">
+                            <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="post-footer-icon">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'makeFavorite' selected_talk.pk %}">
+                            <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="post-footer-icon">
+                        </a>
+                    {% endif %}
                 </div>
 
             </div>

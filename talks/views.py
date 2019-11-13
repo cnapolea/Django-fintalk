@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 
-from .models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser
+from .models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser, FavoriteTalk
 from .forms import CommentForm
 
 class IndexListView(ListView):
@@ -80,12 +80,18 @@ class TalkListView(ListView):
 
         if user.is_authenticated:
             followTalkObj = FollowTalk.objects.filter(user=user, talk=selected_talk)
+            
+            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=selected_talk)
 
             if followTalkObj:
                 context['userFollows'] = True
-
             else:
                 context['userFollows'] = False
+
+            if favoriteTalkObj:
+                context['is_favorite'] = True
+            else:
+                context['is_favorite'] = False
 
         return context
 
@@ -108,6 +114,31 @@ def followTalkManager(request, talk_pk):
 
         else:
             followTalkObj = FollowTalk.objects.create(user=userObj, talk = talkObj)
+
+        return redirect(url)
+
+    else:
+        return redirect(reverse('signIn'))
+
+@login_required(login_url='/auth/login/')
+def makeTalkFavorite(request, talk_pk):
+    """This functions view receives a request with the talk's pk and enables logged in users to make a talk a favorite."""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+    
+    if current_user.is_authenticated:
+        userObj = User.objects.get(pk=current_user.id)
+        talkObj = Talk.objects.get(pk=talk_pk)
+
+        favoriteTalkObj = FavoriteTalk.objects.filter(user = userObj, talk = talkObj)
+
+        if favoriteTalkObj:
+            favoriteTalkObj.delete()
+            
+
+        else:
+            favoriteTalkObj = FavoriteTalk.objects.create(user=userObj, talk = talkObj)
 
         return redirect(url)
 
@@ -198,3 +229,17 @@ def likeReply(request, reply_pk):
     else:
         return redirect(reverse('signIn'))
 
+def deleteReply(request, reply_pk):
+    """This function gets a request with a reply pk as a parameter and we use it to delete a reply"""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        replyObj = Reply.objects.filter(creator=current_user, pk=reply_pk)
+
+        if replyObj:
+            replyObj.delete()
+        
+        return redirect(url)
+        
