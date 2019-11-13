@@ -105,7 +105,9 @@
                 </div>
 
                 {% if reply.creator == request.user %}
-                    <img src="{% static 'image/trash-alt-solid.svg' %}" alt="" class="trash-icon">
+                    <a href="{% url 'delete_reply' reply.pk %}">
+                        <img src="{% static 'image/trash-alt-solid.svg' %}" alt="" class="trash-icon">
+                    </a>
                 {%endif%}
             </div>
         </div>

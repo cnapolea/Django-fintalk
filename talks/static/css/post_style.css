@@ -58,7 +58,7 @@
     height: 40%;
     margin-left: -15vh;
     margin-top: 7vh;
-    padding:0 2%;
+    padding:3% 2%;
     box-shadow: grey 2px 0px 6px;
 }
 
@@ -80,6 +80,10 @@
 .post-footer {
     display: flex;
     justify-content: space-between;
+}
+
+.comment-text-box {
+    margin-top: 3%;
 }
 
 .comment-text-box form {
@@ -104,7 +108,7 @@
     font-weight: bolder;
     width: 10%;
     height: 3.5em;
-    margin-left: 5px;
+    margin-left: 10px;
     border-radius: 15%;
     cursor: pointer;
     transition: all 1s;
@@ -140,6 +144,7 @@
 .post-body {
     display: flex;
     align-items: center;
+    margin: 2% 0;
 }
 
 .post-body a .post-footer-icon {
@@ -151,6 +156,7 @@
     height: 30%;
     width: 80%;
     margin-bottom: 5%;
+    padding: 0 2%;
 }
 
 .img-username{
