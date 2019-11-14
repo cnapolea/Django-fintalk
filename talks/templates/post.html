@@ -18,6 +18,15 @@
             <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" 
             title="Talk Topics" class="talk-info-icon"> 
             <small class="icon-info talk-post-info">{{post.talk.posts.count}}</small>
+            {% if not is_favorite %}
+                <a href="{% url 'makeFavorite' post.talk.pk %}">
+                    <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
+                </a>
+            {% else %}
+                <a href="{% url 'makeFavorite' post.talk.pk %}">
+                    <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
+                </a>
+            {% endif %}
         </div>    
         <div class="post-talk-btn">
                 <button><a href="#">Create Post</a></button>
@@ -32,7 +41,6 @@
                         <a href="{% url 'followTalk' post.talk.pk %}">Follow Talk</a>
                     </button>
                 {% endif %}
-
         </div>
     </div>
 

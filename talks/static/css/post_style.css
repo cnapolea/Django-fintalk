@@ -20,7 +20,7 @@
 }
 
 .talk-info-icon {
-    height: 20px;
+    height: 18px;
     margin-right: 4px;
 }
 
@@ -175,4 +175,8 @@
 
 .trash-icon {
     height:1em;
+}
+
+.talk-info-icon.star {
+    padding-top: 3px;
 }
