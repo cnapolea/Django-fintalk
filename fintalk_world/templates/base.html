@@ -131,22 +131,18 @@
                 </div>
                 <div class="topic-links">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.posts.count >= 3 %}
-                            <h3>Favorite Talks</h3>
-                            <ul>
-                                {% for topic in request.user.topics.all|slice:":3" %}
-                                    <li>{{topic}}</li>
-                                {% endfor %}
-                                <li><a href="">More Talks </a></
-                            </ul>
-                        {% else%}
-                            <h3>Favorite Talks</h3>
-                            <a class="start-topic" href="">Explore Our Talks!</a>
-                        {% endif%}
-
+                        <h3>Favorite Talks</h3>
+                        <ul>
+                            {% for favTalk in request.user.favorite_talks.all|slice:":3" %}
+                                <li>
+                                    <a href="{% url 'talk' favTalk.talk.pk %}" class="side-bar-talks">{{favTalk.talk.name}}</a>    
+                                </li>
+                            {% endfor %}
+                            <li><a href="">More Talks </a></
+                        </ul>
                     {% else %}
-                        <h3>Your Topics</h3>
-                        <a class="start-topic" href="{% url 'signIn' %}">Explore Our Talks!</a>
+                        <h3>Favorite Talks</h3>
+                        <a class="start-topic" href="">Explore Our Talks!</a>
                     {% endif %}
                 </div>
 
