@@ -21,7 +21,8 @@ class IndexListView(ListView):
     context_object_name = 'posts'
     template_name = 'index.html'
     paginate_by = 4
-    
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['talks'] = Talk.objects.all()
@@ -161,13 +162,19 @@ class PostListView(FormView):
       
 
         if user.is_authenticated:
-            followTalkObj = FollowTalk.objects.filter(user=user, talk=Talk.objects.get(pk=self.kwargs['talk_pk']))
+            followTalkObj = FollowTalk.objects.filter(user=user, talk=post.talk)
+            
+            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=post.talk)
 
             if followTalkObj:
                 context['userFollows'] = True
-
             else:
                 context['userFollows'] = False
+
+            if favoriteTalkObj:
+                context['is_favorite'] = True
+            else:
+                context['is_favorite'] = False
 
         return context
     
@@ -242,4 +249,9 @@ def deleteReply(request, reply_pk):
             replyObj.delete()
         
         return redirect(url)
-        
+
+def searchBarRedirect(request):
+    talk_name = request.GET.get('talk-name-input')
+    talkObj = get_object_or_404( Talk,name__icontains=talk_name)
+    
+    return redirect(reverse('talk', kwargs={'talk_pk':talkObj.pk}))
