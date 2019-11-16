@@ -28,18 +28,18 @@
 
                     {% if not is_favorite %}
                         <a href="{% url 'makeFavorite' selected_talk.pk %}">
-                            <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="post-footer-icon">
+                            <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Favor Talk" class="post-footer-icon">
                         </a>
                     {% else %}
                         <a href="{% url 'makeFavorite' selected_talk.pk %}">
-                            <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="post-footer-icon">
+                            <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Unfavor Talk" class="post-footer-icon">
                         </a>
                     {% endif %}
                 </div>
 
             </div>
             <div class="btn-container">
-                <button><a href="#">Create Post</a></button>
+                <button><a href="{% url 'create_post' selected_talk.pk %}">Create Post</a></button>
 
                 {% if userFollows %}
                     <button>
@@ -53,7 +53,7 @@
                 {% endif %}
 
             </div>
-        </div>        
+        </div>     
    </section>
 
    <section class="talk-topics">

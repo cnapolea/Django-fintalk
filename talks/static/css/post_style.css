@@ -55,7 +55,7 @@
     background: whitesmoke;
     justify-content: space-around;
     width: 100%;
-    height: 40%;
+    height: 40vh;
     margin-left: -15vh;
     margin-top: 7vh;
     padding:3% 2%;
@@ -147,13 +147,17 @@
     margin: 2% 0;
 }
 
+.post-text.body {
+    display: flex;
+}
+
 .post-body a .post-footer-icon {
     height: 18px;
     margin-left: 4px;
 }
 
 .talk-post.reply{
-    height: 30%;
+    height: 20vh;
     width: 80%;
     margin-bottom: 5%;
     padding: 0 2%;

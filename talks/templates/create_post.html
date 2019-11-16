@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/post_style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/talk_style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/create_post_style.css' %}"> 
+{% endblock %}
+
+{% block body %}
+    <div class="talk-info-bar">
+        <div class="post-talk-name">
+            <a href="{% url 'talk' talk.pk %}" class="talk-name-link">{{talk.name}} Talk</a>
+        </div>
+        <div class="post-talk-icon">
+            <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="talk-info-icon"> 
+            <small class="talk-post-info">{{talk.followers.all.count}}</small>
+            <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" 
+            title="Talk Topics" class="talk-info-icon"> 
+            <small class="icon-info talk-post-info">{{talk.posts.count}}</small>
+            {% if not is_favorite %}
+                <a href="{% url 'makeFavorite' talk.pk %}">
+                    <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
+                </a>
+            {% else %}
+                <a href="{% url 'makeFavorite' talk.pk %}">
+                    <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
+                </a>
+            {% endif %}
+        </div>    
+        <div class="post-talk-btn">
+                <button><a href="{% url 'talk' talk.pk %}">Go Back</a></button>
+
+                {% if userFollows %}
+                    <button>
+                        <a href="{% url 'followTalk' talk.pk %}">Unfollow Talk</a>
+                    </button>
+                    
+                {% else %}
+                    <button>
+                        <a href="{% url 'followTalk' talk.pk %}">Follow Talk</a>
+                    </button>
+                {% endif %}
+        </div>
+    </div>
+
+    <div class="talk-post create-post">
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                {{field}}
+            {% endfor %}
+            <button type="submit" class="content-submit-btn create-post">Create Post</button>
+        </form>
+    </div>  
+{% endblock %}

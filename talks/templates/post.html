@@ -20,16 +20,16 @@
             <small class="icon-info talk-post-info">{{post.talk.posts.count}}</small>
             {% if not is_favorite %}
                 <a href="{% url 'makeFavorite' post.talk.pk %}">
-                    <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
+                    <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
                 </a>
             {% else %}
                 <a href="{% url 'makeFavorite' post.talk.pk %}">
-                    <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
+                    <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
                 </a>
             {% endif %}
         </div>    
         <div class="post-talk-btn">
-                <button><a href="#">Create Post</a></button>
+                <button><a href="{% url 'create_post' post.talk.pk%}">Create Post</a></button>
 
                 {% if userFollows %}
                     <button>
@@ -52,13 +52,13 @@
         </div>
         
         <div class="post-body">
-            <p class="post-text m">
+            <p class="post-text body">
                 {{post.content}}
-                
+                <a href="{% url 'like_post' post.pk %}">
+                    <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+                </a>
             </p>
-            <a href="{% url 'like_post' post.pk %}">
-                <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
-            </a>
+            
         </div>
 
         <div class="post-footer">
