@@ -11,7 +11,7 @@ from django.urls import reverse
 
 
 from .models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser, FavoriteTalk
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 class IndexListView(ListView):
     """Homepage view. This will receive a list of talk (most populars) 
@@ -96,6 +96,87 @@ class TalkListView(ListView):
 
         return context
 
+class PostListView(FormView):
+    
+    form_class = CommentForm
+    template_name = 'post.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = Post.objects.get(pk=self.kwargs['post_pk'])
+        user = self.request.user
+
+        context['post'] = post
+        context['replies'] = post.replies.all()
+        context['talks'] = Talk.objects.all()
+      
+
+        if user.is_authenticated:
+            followTalkObj = FollowTalk.objects.filter(user=user, talk=post.talk)
+            
+            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=post.talk)
+
+            if followTalkObj:
+                context['userFollows'] = True
+            else:
+                context['userFollows'] = False
+
+            if favoriteTalkObj:
+                context['is_favorite'] = True
+            else:
+                context['is_favorite'] = False
+
+        return context
+    
+    def form_valid(self, form):
+        post = Post.objects.get(pk=self.kwargs['post_pk'])
+        user = self.request.user
+        reply = form.cleaned_data['reply']
+        new_reply = Reply.objects.create(post=post, creator=user, reply=reply)
+
+        return redirect(self.request.META.get('HTTP_REFERER'))    
+
+class CreatePostFormView(FormView):
+    form_class = PostForm
+    template_name = 'create_post.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
+        user = self.request.user
+        
+
+        if user.is_authenticated:
+            followTalkObj = FollowTalk.objects.filter(user=user, talk=talk)
+            
+            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=talk)
+
+            if followTalkObj:
+                context['userFollows'] = True
+            else:
+                context['userFollows'] = False
+
+            if favoriteTalkObj:
+                context['is_favorite'] = True
+            else:
+                context['is_favorite'] = False
+
+        context['talk'] = talk
+
+        return context
+
+    def form_valid(self, form):
+        talk = Talk.objects.get(pk=self.kwargs['talk_pk'])
+        user = self.request.user
+
+        content = form.cleaned_data['content']
+
+        new_post = Post.objects.create(talk=talk, creator=user, content=content)
+
+        return redirect(reverse('talk', kwargs={
+            'talk_pk':talk.pk
+        }))
+
 @login_required(login_url='/auth/login/')
 def followTalkManager(request, talk_pk):
     """This functions view receives a request to with the talk's pk and enables logged in users to follow or unfollow a talk."""
@@ -145,46 +226,6 @@ def makeTalkFavorite(request, talk_pk):
 
     else:
         return redirect(reverse('signIn'))
-
-class PostListView(FormView):
-    
-    form_class = CommentForm
-    template_name = 'post.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = Post.objects.get(pk=self.kwargs['post_pk'])
-        user = self.request.user
-
-        context['post'] = post
-        context['replies'] = post.replies.all()
-        context['talks'] = Talk.objects.all()
-      
-
-        if user.is_authenticated:
-            followTalkObj = FollowTalk.objects.filter(user=user, talk=post.talk)
-            
-            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=post.talk)
-
-            if followTalkObj:
-                context['userFollows'] = True
-            else:
-                context['userFollows'] = False
-
-            if favoriteTalkObj:
-                context['is_favorite'] = True
-            else:
-                context['is_favorite'] = False
-
-        return context
-    
-    def form_valid(self, form):
-        post = Post.objects.get(pk=self.kwargs['post_pk'])
-        user = self.request.user
-        reply = form.cleaned_data['reply']
-        new_reply = Reply.objects.create(post=post, creator=user, reply=reply)
-
-        return redirect(self.request.META.get('HTTP_REFERER'))    
 
 @login_required(login_url='/auth/login/')
 def likePost(request, post_pk):

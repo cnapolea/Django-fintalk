@@ -74,6 +74,9 @@ class Reply(models.Model):
 
     def __str__(self):
         return self.comment[:280] + '...'
+    
+    class Meta:
+        ordering = ["-date_created"]
 
 class FavoriteTalk(models.Model):
     """Middle table (many-to-many relationship) between a user and a talk."""

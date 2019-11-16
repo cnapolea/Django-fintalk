@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea
-from .models import Reply
+from .models import Reply, Post
 
 class CommentForm(ModelForm):
     class Meta:
@@ -10,4 +10,16 @@ class CommentForm(ModelForm):
                 'placeholder':'Start talking about this post.',
                 'class':'content-area'
             })
+        }
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['content',]
+        widgets = {
+            'content':Textarea(
+                attrs={
+                    'placeholder':'Start writing your post.',
+                    'class':'content-text-area'
+                })
         }

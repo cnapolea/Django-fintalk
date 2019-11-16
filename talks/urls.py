@@ -1,10 +1,11 @@
 from django.urls import path
 
-from .views import IndexListView, TalkListView,talkRequest, get_page, followTalkManager, PostListView, likePost, likeReply, deleteReply, makeTalkFavorite, searchBarRedirect
+from .views import IndexListView, TalkListView,talkRequest, get_page, followTalkManager, PostListView, likePost, likeReply, deleteReply, makeTalkFavorite, searchBarRedirect, CreatePostFormView
 
 urlpatterns = [
     path('', IndexListView.as_view(), name = 'homepage'),
     path('talk/<int:talk_pk>/', TalkListView.as_view(), name = 'talk'),
+    path('talk/<int:talk_pk>/create_post/', CreatePostFormView.as_view(), name = 'create_post'),
     path('talk/<int:talk_pk>/post/<int:post_pk>/', PostListView.as_view(), name = 'post_view'),
     path('talk/post/like_reply/<int:reply_pk>', likeReply, name = 'like_reply'),
     path('talk/post/delete_reply/<int:reply_pk>', deleteReply, name = 'delete_reply'),
