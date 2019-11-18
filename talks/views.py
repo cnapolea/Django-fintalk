@@ -1,11 +1,11 @@
-from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.views.generic import View, ListView, FormView, UpdateView, View
 from django.shortcuts import redirect, get_object_or_404, reverse
+from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.shortcuts import render_to_response, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-from django.shortcuts import render_to_response, redirect
+from django.core.paginator import Paginator
 from django.utils import timezone
 from django.urls import reverse
 
@@ -29,7 +29,7 @@ class IndexListView(ListView):
         context['follow_talks'] = FollowTalk.objects.all()
         return context
     
-def talkRequest(request):
+def talk_request(request):
     """Takes a user request to find a talk and it returns a json object
     with talk names if the match exists or it returns None as json object"""
 
@@ -38,7 +38,8 @@ def talkRequest(request):
         data = {'matchedTalks': None}
         return JsonResponse(data)
     else:     
-        talks = Talk.objects.filter(name__icontains=f'{user_input}').values_list('name', flat=True)
+        talks = Talk.objects.filter(
+                    name__icontains=f'{user_input}').values_list('name', flat=True)
         if talks:        
             data = {'matchedTalks': list(talks)}
             return JsonResponse(data)
@@ -50,7 +51,9 @@ def talkRequest(request):
 def get_page(request):
     """This gets the list of objects of the next page. Assists in the pagination on scroll"""
 
-    posts_list = Post.objects.values_list('talk__name', 'creator__username', 'content', 'date_created')
+    posts_list = Post.objects.values_list(
+                    'talk__name', 'creator__username', 
+                    'content', 'date_created')
     paginator = Paginator(posts_list, 4)
 
     page_num = request.GET.get('page')
@@ -71,7 +74,7 @@ class TalkListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
        
-        selected_talk = get_object_or_404(Talk, pk=self.kwargs['talk_pk'])
+        selected_talk = Talk.objects.select_related('posts').get(pk=self.kwargs['talk_pk'])
 
         context['talk_posts'] = selected_talk.posts.all()
 
@@ -80,16 +83,16 @@ class TalkListView(ListView):
         user = self.request.user
 
         if user.is_authenticated:
-            followTalkObj = FollowTalk.objects.filter(user=user, talk=selected_talk)
+            follow_talk_obj = FollowTalk.objects.filter(user=user, talk=selected_talk)
             
-            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=selected_talk)
+            favorite_talk_obj = FavoriteTalk.objects.filter(user=user, talk=selected_talk)
 
-            if followTalkObj:
+            if follow_talk_obj:
                 context['userFollows'] = True
             else:
                 context['userFollows'] = False
 
-            if favoriteTalkObj:
+            if favorite_talk_obj:
                 context['is_favorite'] = True
             else:
                 context['is_favorite'] = False
@@ -103,7 +106,7 @@ class PostListView(FormView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        post = Post.objects.get(pk=self.kwargs['post_pk'])
+        post = Post.objects.select_related('replies').get(pk=self.kwargs['post_pk'])
         user = self.request.user
 
         context['post'] = post
@@ -112,16 +115,16 @@ class PostListView(FormView):
       
 
         if user.is_authenticated:
-            followTalkObj = FollowTalk.objects.filter(user=user, talk=post.talk)
+            follow_talk_obj = FollowTalk.objects.filter(user=user, talk=post.talk)
             
-            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=post.talk)
+            favorite_talk_obj = FavoriteTalk.objects.filter(user=user, talk=post.talk)
 
-            if followTalkObj:
+            if follow_talk_obj:
                 context['userFollows'] = True
             else:
                 context['userFollows'] = False
 
-            if favoriteTalkObj:
+            if favorite_talk_obj:
                 context['is_favorite'] = True
             else:
                 context['is_favorite'] = False
@@ -147,16 +150,16 @@ class CreatePostFormView(FormView):
         
 
         if user.is_authenticated:
-            followTalkObj = FollowTalk.objects.filter(user=user, talk=talk)
+            follow_talk_obj = FollowTalk.objects.filter(user=user, talk=talk)
             
-            favoriteTalkObj = FavoriteTalk.objects.filter(user=user, talk=talk)
+            favorite_talk_obj = FavoriteTalk.objects.filter(user=user, talk=talk)
 
-            if followTalkObj:
+            if follow_talk_obj:
                 context['userFollows'] = True
             else:
                 context['userFollows'] = False
 
-            if favoriteTalkObj:
+            if favorite_talk_obj:
                 context['is_favorite'] = True
             else:
                 context['is_favorite'] = False
@@ -171,31 +174,30 @@ class CreatePostFormView(FormView):
 
         content = form.cleaned_data['content']
 
-        new_post = Post.objects.create(talk=talk, creator=user, content=content)
+        new_post = Post.objects.create(
+                    talk=talk, creator=user, 
+                    content=content)
 
-        return redirect(reverse('talk', kwargs={
-            'talk_pk':talk.pk
-        }))
+        return redirect(reverse('talk', kwargs={'talk_pk':talk.pk} ))
 
 @login_required(login_url='/auth/login/')
-def followTalkManager(request, talk_pk):
+def follow_talk_manager(request, talk_pk):
     """This functions view receives a request to with the talk's pk and enables logged in users to follow or unfollow a talk."""
 
     url = request.META.get('HTTP_REFERER')
     current_user = request.user
     
     if current_user.is_authenticated:
-        userObj = User.objects.get(pk=current_user.id)
-        talkObj = Talk.objects.get(pk=talk_pk)
+        talk_obj = Talk.objects.get(pk=talk_pk)
 
-        followTalkObj = FollowTalk.objects.filter(user = userObj, talk = talkObj)
+        follow_talk_obj = FollowTalk.objects.filter(user = current_user, talk = talk_obj)
 
-        if followTalkObj:
-            followTalkObj.delete()
+        if follow_talk_obj:
+            follow_talk_obj.delete()
             
 
         else:
-            followTalkObj = FollowTalk.objects.create(user=userObj, talk = talkObj)
+            follow_talk_obj = FollowTalk.objects.create(user=current_user, talk = talk_obj)
 
         return redirect(url)
 
@@ -203,24 +205,23 @@ def followTalkManager(request, talk_pk):
         return redirect(reverse('signIn'))
 
 @login_required(login_url='/auth/login/')
-def makeTalkFavorite(request, talk_pk):
+def make_talk_favorite(request, talk_pk):
     """This functions view receives a request with the talk's pk and enables logged in users to make a talk a favorite."""
 
     url = request.META.get('HTTP_REFERER')
     current_user = request.user
     
     if current_user.is_authenticated:
-        userObj = User.objects.get(pk=current_user.id)
-        talkObj = Talk.objects.get(pk=talk_pk)
+        talk_obj = Talk.objects.get(pk=talk_pk)
 
-        favoriteTalkObj = FavoriteTalk.objects.filter(user = userObj, talk = talkObj)
+        favorite_talk_obj = FavoriteTalk.objects.filter(user = current_user, talk = talk_obj)
 
-        if favoriteTalkObj:
-            favoriteTalkObj.delete()
+        if favorite_talk_obj:
+            favorite_talk_obj.delete()
             
 
         else:
-            favoriteTalkObj = FavoriteTalk.objects.create(user=userObj, talk = talkObj)
+            favorite_talk_obj = FavoriteTalk.objects.create(user = current_user, talk = talk_obj)
 
         return redirect(url)
 
@@ -228,24 +229,23 @@ def makeTalkFavorite(request, talk_pk):
         return redirect(reverse('signIn'))
 
 @login_required(login_url='/auth/login/')
-def likePost(request, post_pk):
+def like_post(request, post_pk):
     """This functions view receives a request with the post's pk and enables logged in users to like or unlike a post."""
 
     url = request.META.get('HTTP_REFERER')
     current_user = request.user
 
     if current_user.is_authenticated:
-        userObj = User.objects.get(pk=current_user.id)
-        postObj = Post.objects.get(pk=post_pk)
+        post_obj = Post.objects.get(pk=post_pk)
 
-        likePostObj = LikePost.objects.filter(user = userObj, post = postObj)
+        like_post_obj = LikePost.objects.filter(user = current_user, post = post_obj)
 
-        if likePostObj:
-            likePostObj.delete()
+        if like_post_obj:
+            like_post_obj.delete()
             
 
         else:
-            likePostObj = LikePost.objects.create(user=userObj, post = postObj)
+            like_post_obj = LikePost.objects.create(user=current_user, post = post_obj)
 
         return redirect(url)
 
@@ -253,46 +253,59 @@ def likePost(request, post_pk):
         return redirect(reverse('signIn'))
 
 @login_required(login_url='/auth/login/')
-def likeReply(request, reply_pk):
+def like_reply(request, reply_pk):
     """This functions view receives a request with the reply's pk and enables logged in users to like or unlike a reply."""
 
     url = request.META.get('HTTP_REFERER')
     current_user = request.user
 
     if current_user.is_authenticated:
-        userObj = User.objects.get(pk=current_user.id)
-        replyObj = Reply.objects.get(pk=reply_pk)
+        reply_obj = Reply.objects.get(pk=reply_pk)
 
-        likeReplyObj = LikeReply.objects.filter(user = userObj, reply = replyObj)
+        like_reply_obj = LikeReply.objects.filter(user = current_user, reply = reply_obj)
 
-        if likeReplyObj:
-            likeReplyObj.delete()
+        if like_reply_obj:
+            like_reply_obj.delete()
             
 
         else:
-            likeReplyObj = LikeReply.objects.create(user=userObj, reply = replyObj)
+            like_reply_obj = LikeReply.objects.create(user=current_user, reply = reply_obj)
 
         return redirect(url)
 
     else:
         return redirect(reverse('signIn'))
 
-def deleteReply(request, reply_pk):
+def delete_reply(request, reply_pk):
     """This function gets a request with a reply pk as a parameter and we use it to delete a reply"""
 
     url = request.META.get('HTTP_REFERER')
     current_user = request.user
 
     if current_user.is_authenticated:
-        replyObj = Reply.objects.filter(creator=current_user, pk=reply_pk)
+        reply_obj = Reply.objects.filter(creator=current_user, pk=reply_pk)
 
-        if replyObj:
-            replyObj.delete()
+        if reply_obj:
+            reply_obj.delete()
         
         return redirect(url)
 
-def searchBarRedirect(request):
+def delete_post(request, post_pk):
+    """This function gets a request with a post pk as a parameter and we use it to delete a post"""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        post_obj = Post.objects.filter(creator=current_user, pk=post_pk)
+
+        if post_obj:
+            post_obj.delete()
+        
+        return redirect(url)
+
+def search_bar_redirect(request):
     talk_name = request.GET.get('talk-name-input')
-    talkObj = get_object_or_404( Talk,name__icontains=talk_name)
+    talk_obj = Talk.objects.filter(name__icontains=talk_name)
     
-    return redirect(reverse('talk', kwargs={'talk_pk':talkObj.pk}))
+    return redirect(reverse('talk', kwargs={'talk_pk':talk_obj.pk}))

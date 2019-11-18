@@ -18,18 +18,22 @@ class Talk(models.Model):
     def has_topic(self):
         """Checks if talk has any topic and returns either True or False."""
         topic_count = self.topics.all().count()
+        
         if topic_count <= 0:
             return False
+        
         return True
     
     def count_topics(self):
         """Returns how many topics in the talk."""
         topic_count = self.topics.all().count()
+        
         return topic_count
     
     def get_most_recent_topics(self):
         """Returns a list of the 3 most recent topics."""
         recent_topics = self.topics.all().order_by('-date_created')
+        
         return recent_topics
     
 class FollowTalk(models.Model):
@@ -57,10 +61,12 @@ class Post(models.Model):
     def count_replies(self):
         """Returns the number of replies under this specific post object."""
         counter = self.replies.all().count()
+       
         return counter
     
     def format_date(self):
         """This function helps format an unformatted datetime string to [Weekday], [month] [date] at [time]"""
+        
         return self.date_created.strftime('%a, %b %d at %H:%d')
 
 class Reply(models.Model):
@@ -73,7 +79,7 @@ class Reply(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.comment[:280] + '...'
+        return self.comment[:100] + '...'
     
     class Meta:
         ordering = ["-date_created"]

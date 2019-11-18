@@ -25,7 +25,7 @@ class SignUpFormView(FormView):
         return response
         
 
-def checkEmailAvailability(request):
+def check_email_availability(request):
 
     context = {}
     email_input = request.GET.get('email')
@@ -40,7 +40,7 @@ def checkEmailAvailability(request):
 
     return JsonResponse(context)
 
-def checkUsernameAvailability(request):
+def check_username_availability(request):
     
     context = {}
     username_input = request.GET.get('username')
@@ -53,8 +53,3 @@ def checkUsernameAvailability(request):
         context["username_available"] =  True
     
     return JsonResponse(context)
-
-        
-   
-    
-    

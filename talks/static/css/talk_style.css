@@ -94,3 +94,15 @@
     height: 20px;
 }
 
+.icon-sec-one {
+    display: flex;
+    width: 20%;
+}
+
+.post-comment-icons{
+    justify-content: space-between;
+}
+
+.value-talk-icon {
+    margin-left: 6% !important;
+}
