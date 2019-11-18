@@ -13,7 +13,7 @@
            <a href="{% url 'talk' post.talk.pk %}" class="talk-name-link">{{post.talk.name}} Talk</a>
         </div>
         <div class="post-talk-icon">
-            <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="talk-info-icon"> 
+            <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followers" class="talk-info-icon"> 
             <small class="talk-post-info">{{post.talk.followers.all.count}}</small>
             <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" 
             title="Talk Topics" class="talk-info-icon"> 
