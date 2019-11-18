@@ -7,7 +7,7 @@ class CommentForm(ModelForm):
         fields = ['reply',]
         widgets = {
             'reply': Textarea(
-                attrs={'placeholder':'Start     talking about this      post.',
+                attrs={'placeholder':'Start talking about this post.',
                 'class':'content-area'
                 })
         }
@@ -18,7 +18,7 @@ class PostForm(ModelForm):
         fields = ['content',]
         widgets = {
             'content':Textarea(
-                attrs = {'placeholder':'Start       writing your post.',
-                'class':'content-text-ar    ea'
+                attrs = {'placeholder':'Start writing your post.',
+                'class':'content-text-area'
                 })
         }

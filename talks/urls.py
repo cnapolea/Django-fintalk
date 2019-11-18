@@ -1,6 +1,9 @@
 from django.urls import path
 
-from .views import IndexListView, TalkListView,talk_request, get_page, follow_talk_manager, PostListView, like_post, like_reply, delete_reply, make_talk_favorite, search_bar_redirect, CreatePostFormView, delete_post
+from .views.views import IndexListView, TalkListView, PostListView, CreatePostFormView
+
+from .views.talks_ajax_requests_functions import talk_request, get_page
+from .views.buttons_functionality import follow_talk_manager, like_post, like_reply, delete_reply, make_talk_favorite, search_bar_redirect, delete_post
 
 urlpatterns = [
     path('', IndexListView.as_view(), name = 'homepage'),
