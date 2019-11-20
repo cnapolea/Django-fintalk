@@ -1,13 +1,9 @@
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, FormView, TemplateView
 from django.shortcuts import redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator
-from django.utils import timezone
-
-
 
 from ..models import Talk, FollowTalk, Post, Reply, LikePost, LikeReply, UserFollowUser, FavoriteTalk
 from ..forms import CommentForm, PostForm
@@ -144,3 +140,16 @@ class CreatePostFormView(FormView):
 
         return redirect(reverse('talk', kwargs={'talk_pk':talk.pk} ))
 
+class UserProfile(TemplateView):
+    """This view handles the display of the user's profile"""
+
+    template_name = 'user_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = get_object_or_404(User, username=self.kwargs['username'])
+        talks = Talk.objects.all()
+        context['user'] = user
+        context['talks'] = talks 
+
+        return context

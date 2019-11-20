@@ -101,6 +101,13 @@
     margin-right: 1vw;
 }
 
+.user-profile-link {
+    transition: all 1s;
+}
+.user-profile-link:hover {
+    color: lightseagreen;
+}
+
 .recent-topics .topic-board .board-header .talk-name {
     color: lightseagreen;
 }

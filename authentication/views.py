@@ -1,4 +1,4 @@
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView
 from django.shortcuts import redirect, get_object_or_404, reverse
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -12,7 +12,7 @@ class SignUpFormView(FormView):
     
     form_class = SignUpForm
     template_name = 'sign_up.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('signIn')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -27,19 +27,4 @@ class SignUpFormView(FormView):
                     password, first_name=first_name, 
                     last_name=last_name)
         return response
-
-class UserProfile(TemplateView):
-    """This view handles the display of the user's profile"""
-
-    template_name = 'user_profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = get_object_or_404(User, pk=self.kwargs['user_pk'])
-        talks = Talk.objects.all()
-        context['user_profile'] = user
-        context['talks'] = talks 
-
-        return context
-
 

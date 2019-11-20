@@ -9,6 +9,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('sign_up/', SignUpFormView.as_view(), name='sign_up'),
     path('sign_up/ajax/username_verification/', check_username_availability, name='check_input_availability'),
-    path('sign_up/ajax/email_verification/', check_email_availability, name='check_input_availability'),
-
+    path('sign_up/ajax/email_verification/', check_email_availability, name='check_input_availability'),  
 ]

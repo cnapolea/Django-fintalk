@@ -84,6 +84,11 @@ class Reply(models.Model):
     class Meta:
         ordering = ["-date_created"]
 
+    def format_date(self):
+        """This function helps format an unformatted datetime string to [Weekday], [month] [date] at [time]"""
+        
+        return self.date_created.strftime('%a, %b %d at %H:%d')
+
 class FavoriteTalk(models.Model):
     """Middle table (many-to-many relationship) between a user and a talk."""
 

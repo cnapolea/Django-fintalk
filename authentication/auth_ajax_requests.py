@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+
 def check_email_availability(request):
 
     """This function sends true or false to an ajax request to inform the user if an email is taken or not."""

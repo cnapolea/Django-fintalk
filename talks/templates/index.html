@@ -25,10 +25,12 @@
             <div class="topic-board">
                     <div class="board-header">
 
-                        <img src="/static/image/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
+                        <img src="/static/images/user-circle-regular.svg" alt="User Avatar" class="user-avatar">
                         
                         <p>
-                            <span>{{post.creator.username}} - post at: </span>
+                            <a href="{% url 'user_profile' post.creator.username %}" class="user-profile-link">
+                                {{post.creator.username}} - post at: 
+                            </a>
                             <span>
                                 <a href="{% url 'talk' post.talk.pk %}" class="talk-name">{{post.talk.name}}</a>
                             </span>
@@ -56,10 +58,10 @@
                     </div>
                     <div class="post-comment-icons">
                         <a href="{% url 'post_view' post.talk.pk post.pk%}">
-                            <img src="{% static 'image/comment-alt-regular.svg' %}" alt="chat bubble" class="post-footer-icon" title="add comment">
+                            <img src="{% static 'images/comment-alt-regular.svg' %}" alt="chat bubble" class="post-footer-icon" title="add comment">
                         </a>
                         <a href="{% url 'like_post' post.pk %}" class="value-icon">
-                            <img src="{% static 'image/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon home" title="Increase post value">
+                            <img src="{% static 'images/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon home" title="Increase post value">
                         </a>
                         
                     </div>

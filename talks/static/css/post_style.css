@@ -133,6 +133,15 @@
     color: lightseagreen;
 }
 
+.user-profile-link {
+    text-decoration: none !important;
+    color: black !important;
+    transition: all 1s;
+}
+.user-profile-link:hover {
+    color: lightseagreen !important;
+}
+
 .not-logged-text {
     color: lightseagreen;
 }
