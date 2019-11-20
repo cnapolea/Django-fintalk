@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/talkß_style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/post_style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/user_profile_style.css' %}"> 
+{% endblock %}
+
+{% block body %}
+    {% if request.user != user %}
+        <div class="talk-info-bar user-profile">
+            <div class="user-username">
+                {{user.username}}'s Profile
+            </div>
+            <div class="user-info-icons">
+                <img src="{% static 'images/users-solid.svg' %}" alt="user icon" class="info-icons">
+                <p>{{user.is_followed_by.all.count}}</p>
+                <img src="{% static 'images/comment-alt-solid.svg' %}" alt="a squared chat bubble" class="info-icons">
+                <p>{{user.posts.count}}</p>
+            </div>
+            
+            
+                <div class="info-bar-btns">
+                    <button class="info-bar-btn">
+                        <a href="">
+                            Follow
+                        </a>
+                    </button>
+                </div>    
+        </div>
+    {% else %}
+        <div class="talk-info-bar user-profile logged">
+            <div class="user-username">
+                {{user.username}}'s Profile
+            </div>
+            <div class="user-info-icons">
+                <img src="{% static 'images/users-solid.svg' %}" alt="user icon" class="info-icons">
+                <p>{{user.is_followed_by.all.count}}</p>
+                <img src="{% static 'images/comment-alt-solid.svg' %}" alt="a squared chat bubble" class="info-icons">
+                <p>{{user.posts.count}}</p>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="profile-main-area">
+        {% if user.posts.all %}
+        <div class="descriptive-header">
+           <small>{{user.username}}'s recent posts</small> 
+        {% endif %}
+        </div>
+        <div class="user-activity-area">
+            {% for post in user.posts.all|slice:"6" %}
+                <div class="talk-post">
+                    <div class="post-header">
+                        <img src="{% static 'images/user-circle-regular.svg' %}" alt="" class="user-circle-img">
+                        <p class="post-text">
+                            <a href="{% url 'user_profile' post.creator.username %}" class="user-profile-link">
+                                {{post.creator.username}} - post at: 
+                            </a>
+                        </p>
+                        <p class="post-text"><a href="{% url 'talk' post.talk.pk %}" class="talk-name-link post">{{post.talk.name}}</a></p>
+                    </div>
+                    
+                    <div class="post-body">
+                        <p class="post-text body">
+                            {{post.content}}
+                        </p>
+                        
+                    </div>
+            
+                    <div class="post-footer">
+                        <div class="footer-links">
+                            <small class="post-text s">replies</small>
+                            <small class="post-text s">{{post.replies.count}}</small>
+                            <small class="post-text s">value</small>
+                            <small class="post-text s">{{post.user_post_likes.count}}</small>
+                        </div>
+                        <div class="post-date">
+                            <small class="post-text">{{post.format_date}}</small>
+                        </div>
+                    </div>
+                    <div class="post-comment-icons">
+                        <div class="icon-sec-one">
+                            <a href="{% url 'post_view' post.talk.pk post.pk %}">
+                                <img src="{% static 'images/comment-alt-regular.svg' %}" alt="chat bubble" class="post-footer-icon" title="add comment">
+                            </a>
+                            <a href="{% url 'like_post' post.pk %}" class="value-talk-icon">
+                                <img src="{% static 'images/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+                            </a>
+                        </div>
+                        {% if post.creator == request.user %}
+                            <a href="{% url 'delete_post' post.pk %}">
+                                <img src="{% static 'images/trash-alt-solid.svg' %}" alt="trash can icon" title='Delete Post' class="post-footer-icon">
+                            </a>
+                        {%endif%}
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="descriptive-header">
+               <small>{{user.username}}'s valuable posts</small> 
+        </div>
+        <div class="other-activities-area">
+            
+        </div>
+    </div>
+
+{% endblock %}

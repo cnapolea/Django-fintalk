@@ -13,18 +13,18 @@
             <a href="{% url 'talk' talk.pk %}" class="talk-name-link">{{talk.name}} Talk</a>
         </div>
         <div class="post-talk-icon">
-            <img src="{% static 'image/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="talk-info-icon"> 
+            <img src="{% static 'images/users-solid.svg' %}" alt="followers icon" title="Talk Followes" class="talk-info-icon"> 
             <small class="talk-post-info">{{talk.followers.all.count}}</small>
-            <img src="{% static 'image/chalkboard-solid.svg' %}" alt="followers icon" 
+            <img src="{% static 'images/chalkboard-solid.svg' %}" alt="followers icon" 
             title="Talk Topics" class="talk-info-icon"> 
             <small class="icon-info talk-post-info">{{talk.posts.count}}</small>
             {% if not is_favorite %}
                 <a href="{% url 'makeFavorite' talk.pk %}">
-                    <img src="{% static 'image/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
+                    <img src="{% static 'images/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
                 </a>
             {% else %}
                 <a href="{% url 'makeFavorite' talk.pk %}">
-                    <img src="{% static 'image/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
+                    <img src="{% static 'images/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
                 </a>
             {% endif %}
         </div>    

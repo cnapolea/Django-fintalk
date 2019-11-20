@@ -1,0 +1,70 @@
+.talk-info-bar.user-profile {
+    align-items: center;
+    height: 10vh;
+}
+
+.talk-info-bar.user-profile.logged {
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 3%;
+}
+
+.talk-info-bar.user-profile.logged .user-username {
+    width: 30%;
+}
+
+.user-username {
+    width: 25%;
+    font-size: 1em;
+}
+
+.user-info-icons {
+    display: flex;
+    width: 10%;
+}
+
+.user-info-icons img {
+    margin-right: 4px;
+}
+
+.user-info-icons p {
+    margin-right: 4px;
+}
+
+.info-icons {
+    height: 1.2em;
+}
+
+.talk-info-bar.user-profile .info-bar-btns {
+    width: 15%;
+}
+.talk-info-bar.user-profile .info-bar-btn {
+    width: 50%;
+    height: 25px;
+}
+
+.descriptive-header {
+    margin: 2% 0 2% -14vw;
+    color: lightseagreen;
+    font-weight: 500;
+}
+
+.post-comment-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-footer-icon {
+    height: 20px;
+}
+
+.icon-sec-one a {
+    text-decoration: none;
+}
+
+.talk-post {
+    height: 30vh;
+    margin-left: -17vh;
+    margin-top: 3vh;
+}
