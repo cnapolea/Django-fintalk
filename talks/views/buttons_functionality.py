@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, reverse
+from django.contrib.auth.models import User
 
-from ..models import Talk, Post, Reply, FollowTalk, FavoriteTalk, LikePost, LikeReply
+from ..models import Talk, Post, Reply, FollowTalk, UserFollowUser, FavoriteTalk, LikePost, LikeReply
 
 @login_required(login_url='/auth/login/')
 def follow_talk_manager(request, talk_pk):
@@ -76,6 +77,30 @@ def like_post(request, post_pk):
         return redirect(reverse('signIn'))
 
 @login_required(login_url='/auth/login/')
+def follow_user(request, user_pk):
+    """This functions view receives a request with the user's pk and enables logged in users to follow or unfollow another user."""
+
+    url = request.META.get('HTTP_REFERER')
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        user_obj = User.objects.get(pk=user_pk)
+
+        follow_user_obj = UserFollowUser.objects.filter(follower=current_user, being_followed=user_obj)
+
+        if follow_user_obj:
+            follow_user_obj.delete()
+            
+
+        else:
+            follow_user_obj= UserFollowUser.objects.create(follower=current_user, being_followed=user_obj)
+
+        return redirect(url)
+
+    else:
+        return redirect(reverse('signIn'))
+
+@login_required(login_url='/auth/login/')
 def like_reply(request, reply_pk):
     """This functions view receives a request with the reply's pk and enables logged in users to like or unlike a reply."""
 
@@ -129,6 +154,6 @@ def delete_post(request, post_pk):
 
 def search_bar_redirect(request):
     talk_name = request.GET.get('talk-name-input')
-    talk_obj = Talk.objects.filter(name__icontains=talk_name)
+    talk_obj = Talk.objects.get(name__icontains=talk_name)
     
     return redirect(reverse('talk', kwargs={'talk_pk':talk_obj.pk}))

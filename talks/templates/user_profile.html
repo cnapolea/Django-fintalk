@@ -24,8 +24,12 @@
             
                 <div class="info-bar-btns">
                     <button class="info-bar-btn">
-                        <a href="">
-                            Follow
+                        <a href="{% url 'follow_user' user.pk %}">
+                            {% if not being_followed %}
+                                Follow
+                            {% else %}
+                                Unfollow
+                            {% endif %}
                         </a>
                     </button>
                 </div>    
@@ -63,7 +67,9 @@
                                 {{post.creator.username}} - post at: 
                             </a>
                         </p>
-                        <p class="post-text"><a href="{% url 'talk' post.talk.pk %}" class="talk-name-link post">{{post.talk.name}}</a></p>
+                        <p class="post-text">
+                            <a href="{% url 'talk' post.talk.pk %}" class="talk-name-link post">{{post.talk.name}}</a>
+                        </p>
                     </div>
                     
                     <div class="post-body">
@@ -123,7 +129,9 @@
                                 <a href="{% url 'user_profile' liked_post_obj.post.creator.username %}" class="user-profile-link">{{liked_post_obj.post.creator.username}} - post at: </a>
                             </p>
                 
-                            <p class="post-text"><a href="{% url 'talk' liked_post_obj.post.talk.pk %}" class="talk-name-link post">{{post.talk.name}}</a></p>
+                            <p class="post-text">
+                                <a href="{% url 'talk' liked_post_obj.post.talk.pk %}" class="talk-name-link post">{{liked_post_obj.post.talk.name}}</a>
+                            </p>
                         </div>
                         
                         <div class="post-body">
@@ -146,6 +154,22 @@
                             <div class="post-date">
                                 <small class="post-text">{{liked_post_obj.post.format_date}}</small>
                             </div>
+                        </div>
+                        <div class="post-comment-icons">
+                            <div class="icon-sec-one">
+                                <a href="{% url 'post_view' liked_post_obj.post.talk.pk liked_post_obj.post.pk %}">
+                                    <img src="{% static 'images/comment-alt-regular.svg' %}" alt="chat bubble" class="post-footer-icon" title="add comment">
+                                </a>
+                                <a href="{% url 'like_post' liked_post_obj.post.pk %}" class="value-talk-icon">
+                                    <img src="{% static 'images/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+                                </a>
+                            </div>
+                            {% if liked_post_obj.post.creator == request.user %}
+                                <a href="{% url 'delete_post' liked_post_obj.post.pk %}">
+                                    <img src="{% static 'images/trash-alt-solid.svg' %}" alt="trash can icon" title='Delete Post' class="post-footer-icon">
+                                </a>
+                            {%endif%}
+        
                         </div>
                     </div> 
                 {% endif %}
