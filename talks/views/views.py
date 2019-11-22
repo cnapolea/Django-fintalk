@@ -149,6 +149,14 @@ class UserProfile(TemplateView):
         context = super().get_context_data(**kwargs)
         user = get_object_or_404(User, username=self.kwargs['username'])
         talks = Talk.objects.all()
+
+        profile_owner = self.request.user.follows.filter(being_followed=user)
+
+        if profile_owner.count() >= 1:
+            context['being_followed'] = True
+        else:
+            context['being_followed'] = False
+
         context['user'] = user
         context['talks'] = talks 
 

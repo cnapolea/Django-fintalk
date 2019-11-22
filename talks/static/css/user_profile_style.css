@@ -67,8 +67,13 @@
     height: 30vh;
     margin-left: -19vh;
     margin-top: 3vh;
+    padding: 1% 2%;
 }
 
 .other-activities-area {
     margin-bottom: 3%;
+}
+
+.post-comment-icons .icon-sec-one a:nth-child(2) {
+    margin-left: 4px;
 }
