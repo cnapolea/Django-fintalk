@@ -19,11 +19,11 @@
             title="Talk Topics" class="talk-info-icon"> 
             <small class="icon-info talk-post-info">{{talk.posts.count}}</small>
             {% if not is_favorite %}
-                <a href="{% url 'makeFavorite' talk.pk %}">
+                <a href="{% url 'make_favorite' talk.pk %}">
                     <img src="{% static 'images/star-regular.svg' %}" alt="star shape icon" title="Unfavor Talk" class="talk-info-icon star">
                 </a>
             {% else %}
-                <a href="{% url 'makeFavorite' talk.pk %}">
+                <a href="{% url 'make_favorite' talk.pk %}">
                     <img src="{% static 'images/star-solid.svg' %}" alt="star shape icon" title="Favor Talk" class="talk-info-icon star">
                 </a>
             {% endif %}
