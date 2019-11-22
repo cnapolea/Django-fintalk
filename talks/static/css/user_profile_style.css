@@ -45,7 +45,7 @@
 }
 
 .descriptive-header {
-    margin: 2% 0 2% -14vw;
+    margin: 2% 0 2% -13vw;
     color: lightseagreen;
     font-weight: 500;
 }
@@ -65,6 +65,10 @@
 
 .talk-post {
     height: 30vh;
-    margin-left: -17vh;
+    margin-left: -19vh;
     margin-top: 3vh;
+}
+
+.other-activities-area {
+    margin-bottom: 3%;
 }

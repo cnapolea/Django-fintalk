@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block body %}
+
     {% if request.user != user %}
         <div class="talk-info-bar user-profile">
             <div class="user-username">
@@ -44,11 +45,14 @@
     {% endif %}
     
     <div class="profile-main-area">
-        {% if user.posts.all %}
-        <div class="descriptive-header">
-           <small>{{user.username}}'s recent posts</small> 
+        
+        {% if user.posts.count >= 1 %}
+            <div class="descriptive-header">
+                <small>{{user.username}}'s recent posts</small> 
+            </div>
         {% endif %}
-        </div>
+
+        
         <div class="user-activity-area">
             {% for post in user.posts.all|slice:"6" %}
                 <div class="talk-post">
@@ -99,11 +103,54 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="descriptive-header">
-               <small>{{user.username}}'s valuable posts</small> 
-        </div>
+        
+        {% if user.liked_posts.count >= 1 %}
+            <div class="descriptive-header">
+                <small>{{user.username}}'s valuable posts</small> 
+            </div>
+        {% endif %}
+
         <div class="other-activities-area">
-            
+            {% for liked_post_obj in user.liked_posts.all|slice:"6" %}
+
+                {% if not liked_post_obj.post.creator == user %}
+                    <div class="talk-post">
+                
+                        <div class="post-header">
+                            <img src="{% static 'images/user-circle-regular.svg' %}" alt="" class="user-circle-img">
+                            
+                            <p class="post-text">
+                                <a href="{% url 'user_profile' liked_post_obj.post.creator.username %}" class="user-profile-link">{{liked_post_obj.post.creator.username}} - post at: </a>
+                            </p>
+                
+                            <p class="post-text"><a href="{% url 'talk' liked_post_obj.post.talk.pk %}" class="talk-name-link post">{{post.talk.name}}</a></p>
+                        </div>
+                        
+                        <div class="post-body">
+                            <p class="post-text body">
+                                {{liked_post_obj.post.content}}
+                                <a href="{% url 'like_post' liked_post_obj.post.pk %}">
+                                    <img src="{% static 'images/chart-line-solid.svg' %}" alt="chart graph" class="post-footer-icon" title="Increase post value">
+                                </a>
+                            </p>
+                            
+                        </div>
+                
+                        <div class="post-footer">
+                            <div class="footer-links">
+                                <small class="post-text s">replies</small>
+                                <small class="post-text s">{{liked_post_obj.post.replies.count}}</small>
+                                <small class="post-text s">value</small>
+                                <small class="post-text s">{{liked_post_obj.post.user_post_likes.count}}</small>
+                            </div>
+                            <div class="post-date">
+                                <small class="post-text">{{liked_post_obj.post.format_date}}</small>
+                            </div>
+                        </div>
+                    </div> 
+                {% endif %}
+
+            {% endfor %}
         </div>
     </div>
 
